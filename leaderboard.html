@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TubeTrends - Leaderboards</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    /* Theme colors (adjust as needed) */
+    body {
+      background-color: #f5f5f5;
+    }
+   
+    a {
+      color: #007bff;
+    }
+    h2 {
+      color: #212529;
+    }
+    .leaderboard-filters select {
+      margin-right: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TubeTrends</h1>
+    <p>Uncover trends and discover the next big YouTube stars</p>
+  </header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leaderboard.html">Leaderboards</a></li>
+      <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
+      <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+    </ul>
+  </nav>
+  <?php include("header.html"); ?>
+  <main>
+    <section class="leaderboards">
+      <h2>Top 100 YouTube Channels</h2>
+
+      <div class="leaderboard-filters">
+        <select name="category" id="category-select">
+          <option value="all">All Categories</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="gaming">Gaming</option>
+          <option value="streamers">Streamers</option>
+          <option value="lifestyle">Lifestyle</option>
+          <option value="tech">Tech</option>
+          <option value="education">Education and Science</option>
+          <option value="news">News</option>
+        </select>
+        <select name="sort-by" id="sort-by">
+          <option value="subscribers">Subscribers (High to Low)</option>
+          <option value="views">Video Views (High to Low)</option>
+          <option value="upload-rate">Upload Rate (Most Frequent)</option>
+        </select>
+      </div>
+
+      <ul class="leaderboard-list">
+        </ul>
+    </section>
+  </main>
+
+  <?php include("footer.html"); ?>
+  <footer>
+    <p>&copy; TubeTrends 2024</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

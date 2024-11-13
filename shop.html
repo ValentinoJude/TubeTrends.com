@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TubeTrends Shop - Merchandise</title>
+  <link rel="stylesheet" href="home.css">
+</head>
+<body>
+  <header>
+    <h1>TubeTrends Shop</h1>
+    <p>Browse our exclusive TubeTrends merchandise!</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leaderboard.html">Leaderboards</a></li>
+      <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
+      <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="shop-filters">
+      <div>
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="popularity">Popularity</option>
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="merchandise">
+      <h2>BUY OUR MERCH</h2>
+      <ul class="merch-list">
+        <li>
+          <img src="images/Screenshot (27).png" alt="TubeTrends T-Shirt">
+          <div class="merch-info">
+            <h3>TubeTrends T-Shirt</h3>
+            <p>Price: $25.00</p>
+            <label for="size">Size:</label>
+            <select id="size">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="xl">XL</option>
+            </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <button class="add-to-cart">Add to Cart</button>
+            <div class="customer-reviews">
+              <h4>Customer Reviews:</h4>
+              <p>Rating: ★★★★☆ (4/5)</p>
+              <p>"Great quality and fits perfectly!" - User123</p>
+            </div>
+          </div>
+        </li>
+        <li>
+            <img src="images/Screenshot (37).png" alt="TubeTrends Hoodie">
+            <div class="merch-info">
+              <h3>TubeTrends Hoodie</h3>
+              <p>Price: $30.00</p>
+              <label for="size">Size:</label>
+              <select id="size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="xl">XL</option>
+              </select>
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" min="1" value="1">
+              <button class="add-to-cart">Add to Cart</button>
+              <div class="customer-reviews">
+                <h4>Customer Reviews:</h4>
+                <p>Rating: ★★★★☆ (4/5)</p>
+                <p>"Great quality and fits perfectly!" - User123</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <img src="images/Screenshot (38).png" alt="TubeTrends Hat">
+            <div class="merch-info">
+              <h3>TubeTrends hat</h3>
+              <p>Price: $5.00</p>
+              <label for="size">Size:</label>
+              <select id="size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="xl">XL</option>
+              </select>
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" min="1" value="1">
+              <button class="add-to-cart">Add to Cart</button>
+              <div class="customer-reviews">
+                <h4>Customer Reviews:</h4>
+                <p>Rating: ★★★★☆ (4/5)</p>
+                <p>"Great quality and fits perfectly!" - User123</p>
+              </div>
+            </div>
+          </li>
+          <li>
+            <img src="images/shorts.png" alt="TubeTrends shorts">
+            <div class="merch-info">
+              <h3>TubeTrends shorts</h3>
+              <p>Price: $35.00</p>
+              <label for="size">Size:</label>
+              <select id="size">
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="xl">XL</option>
+              </select>
+              <label for="quantity">Quantity:</label>
+              <input type="number" id="quantity" min="1" value="1">
+              <button class="add-to-cart">Add to Cart</button>
+              <div class="customer-reviews">
+                <h4>Customer Reviews:</h4>
+                <p>Rating: ★★★★☆ (4/5)</p>
+                <p>"Great quality and fits perfectly!" - User123</p>
+              </div>
+            </div>
+          </li>
+        <!-- Repeat for additional products -->
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; TubeTrends 2024</p>
+  </footer>
+
+  <script src="shop.js"></script>
+</body>
+</html>

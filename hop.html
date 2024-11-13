@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TubeTrends Shop - Merchandise</title>
+  <link rel="stylesheet" href="home.css">
+  <style>
+    /* Style for cart icon */
+    .cart-icon {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+    }
+    .cart-icon img {
+      width: 30px;
+    }
+    /* Badge for showing number of items in cart */
+    .cart-badge {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 5px 10px;
+      font-size: 12px;
+    }
+    /* Style for the cart modal */
+    #cart-modal {
+      display: none;
+      position: fixed;
+      right: 10px;
+      top: 60px;
+      width: 300px;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      z-index: 1000;
+    }
+    #cart-modal h3 {
+      margin-top: 0;
+    }
+    /* Overlay to cover the screen when modal is open */
+    #modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 900;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TubeTrends Shop</h1>
+    <p>Browse our exclusive TubeTrends merchandise!</p>
+
+    <!-- Cart Icon in the Header -->
+    <div class="cart-icon" onclick="toggleCartModal()">
+      <img src="images/cart-icon.png" alt="Cart">
+      <span class="cart-badge" id="cart-count">0</span>
+    </div>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="leaderboard.html">Leaderboards</a></li>
+      <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
+      <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="shop-filters">
+      <div>
+        <label for="sort-select">Sort by:</label>
+        <select id="sort-select">
+          <option value="popularity">Popularity</option>
+          <option value="price-low-high">Price: Low to High</option>
+          <option value="price-high-low">Price: High to Low</option>
+          <option value="rating">Rating</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="merchandise">
+      <h2>BUY OUR MERCH</h2>
+      <ul class="merch-list">
+        <li>
+          <img src="images/Screenshot (27).png" alt="TubeTrends T-Shirt">
+          <div class="merch-info">
+            <h3>TubeTrends T-Shirt</h3>
+            <p class="price">Price: $25.00</p>
+            <label for="size">Size:</label>
+            <select id="size">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+              <option value="xl">XL</option>
+            </select>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" min="1" value="1">
+            <button class="add-to-cart" onclick="addToCart(this)">Add to Cart</button>
+            <div class="customer-reviews">
+              <h4>Customer Reviews:</h4>
+              <p>Rating: ★★★★☆ (4/5)</p>
+              <p>"Great quality and fits perfectly!" - User123</p>
+            </div>
+          </div>
+        </li>
+        <!-- Repeat for additional products -->
+      </ul>
+    </section>
+  </main>
+
+  <!-- Cart Modal -->
+  <div id="cart-modal">
+    <h3>Your Cart</h3>
+    <div id="cart-items-modal">
+      <p>Your cart is empty.</p>
+    </div>
+    <button onclick="checkout()">Proceed to Checkout</button>
+  </div>
+
+  <!-- Overlay -->
+  <div id="modal-overlay" onclick="toggleCartModal()"></div>
+
+  <footer>
+    <p>&copy; TubeTrends 2024</p>
+  </footer>
+
+  <script src="shop.js"></script>
+</body>
+</html>
