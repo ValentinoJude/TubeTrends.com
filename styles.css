@@ -129,10 +129,10 @@ h2 {
 
 .leaderboard-list li img,
 .up-and-coming-list li img {
-  border-radius: 16px;
-  height: 250px;
-  width: 190px;
+  width: 80px;
+  height: 80px;
   margin-right: 15px;
+  border-radius: 50%;
 }
 
 .channel-info {
