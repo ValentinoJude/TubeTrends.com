@@ -34,27 +34,29 @@ Prerequisites
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/your-repo.git
+   git clone https://github.com/ValentinoJude/your-repo.git
 Navigate to the project directory:
 
-bash
-cd your-repo
-Install the dependencies:
+   bash
+      cd your-repo
+      Install the dependencies:
 
-bash
-npm install
-Running the Application
-Start the development server:
+   bash
+      npm install      
+      Running the Application
+      Start the development server:
 
-bash
-npm start
-Open your web browser and go to http://localhost:3000 to see the application in action.
+   bash
+      npm start
+      Open your web browser and go to http://localhost:3000 to see the application in action.
 
-Contributing
-I am looking for collaborators who are willing to help me learn and work on this project. Whether you are a seasoned developer or a fellow beginner, your contributions are welcome!
+###Contributing
+
+   I am looking for collaborators who are willing to help me learn and work on this project. Whether you are a seasoned developer or a fellow beginner, your contributions are welcome!
 
 
-**How to Contribute**
+###How to Contribute
+
 -Fork the repository
 
 -Create a new branch (git checkout -b feature-branch)
@@ -65,17 +67,20 @@ I am looking for collaborators who are willing to help me learn and work on this
 
 -Open a pull request
 
-**License**
-This project is licensed under the MIT License.
+###License
+
+   This project is licensed under the MIT License.
 
 Acknowledgments
--YouTube Data API
--Chart.js
 
-Everyone who is willing to support and contribute to this project!
+   -YouTube Data API
 
-Feel free to reach out if you have any questions or suggestions. Let's learn and build something great together!
+   -Chart.js
 
-I dont really know what am doing , so if you wanna help out am all ears
+   Everyone who is willing to support and contribute to this project!
+
+   Feel free to reach out if you have any questions or suggestions. Let's learn and build something great together!
+
+   I dont really know what am doing , so if you wanna help out am all ears
 
 
