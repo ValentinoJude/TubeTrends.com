@@ -101,7 +101,7 @@ h2 {
   display: flex;
   margin-bottom: 5px;
   margin-right: 10px;
-  gap: 40px;
+  gap: 5px;
 }
 
 .leaderboard-filters input[type="text"] {
