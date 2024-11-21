@@ -30,7 +30,7 @@ Prerequisites
 - Node.js
 - npm (Node Package Manager)
 
-### Installation
+## Installation
 
 1. Clone the repository:
    ```bash
@@ -50,12 +50,12 @@ Navigate to the project directory:
       npm start
       Open your web browser and go to http://localhost:3000 to see the application in action.
 
-### Contributing
+## Contributing
 
    I am looking for collaborators who are willing to help me learn and work on this project. Whether you are a seasoned developer or a fellow beginner, your contributions are welcome!
 
 
-### How to Contribute
+## How to Contribute
 
 -Fork the repository
 
@@ -67,11 +67,11 @@ Navigate to the project directory:
 
 -Open a pull request
 
-### License
+## License
 
    This project is licensed under the MIT License.
 
-### Acknowledgments
+## Acknowledgments
 
    -YouTube Data API
 
