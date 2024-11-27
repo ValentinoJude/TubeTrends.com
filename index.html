@@ -4,254 +4,201 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TubeTrends - YouTube Channel Insights</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   </head>
   <body>
-    <header>
-      <h1>TubeTrends</h1>
-      <p>Uncover trends and discover the next big YouTube stars.</p>
-    </header>
-
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="leaderboard.html">Leaderboards</a></li>
-        <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-        <li><a href="trends.html" class="active">Trends</a></li>
-        <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
-      </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          TubeTrends
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="leaderboard.html">Leaderboards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="comparisontool.html">Compare</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="trends.html">Trends</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="blog.html">Blog</a>
+          </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="shop.html">Shop</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
-    <main>
-      <section class="leaderboards">
-        <h2>Top 100 YouTube Channels</h2>
-        <div class="leaderboard-filters">
-          <select name="category" id="category-select">
-            <option value="all">All Categories</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="gaming">Gaming</option>
-            <option value="streamers">Streamers</option>
-            <option value="lifestyle">Lifestyle</option>
-            <option value="tech">Tech</option>
-            <option value="education">Education and Science</option>
-            <option value="news">News</option>
-            <option value="news">Sports</option>
-          </select>
-          <div>
-            <input type="text" name="search" placeholder="Search Channels">
-          <button type="button" class="search-btn" style="border-radius: 15px;">Search</button>
+    <!-- Hero Section -->
+    <section class="hero-section bg-danger text-white py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h1 class="display-4 fw-bold mb-3">Discover YouTube Trends</h1>
+            <p class="lead mb-4">Uncover trends and discover the next big YouTube stars with comprehensive analytics and insights.</p>
+            <div class="d-flex gap-3">
+              <a href="#explore" class="btn btn-light btn-lg">Explore Now</a>
+              <a href="about.html" class="btn btn-outline-light btn-lg">Learn More</a>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-4 mt-lg-0">
+            <img src="Images/Screenshot (39).png" alt="YouTube Analytics" class="img-fluid rounded shadow-lg">
           </div>
         </div>
-        <ul class="leaderboard-list">
-          <li>
-            <img src="Images\mrbeast.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #1
-                <a href="https://www.youtube.com/@MrBeast" target="_blank">MrBeast</a>
-              </h3>
-              <p>Subscriber Count: 294 Million</p>
-              <p>Videos: 804</p>
-              <p>Video views: 53.3 Billion</p>
-              <p>Joined: Feb 20, 2012</p>
-              <p>Owned by: James Stephen "Jimmy" Donaldson AKA MrBeast</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\Tseries.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #2
-                <a href="https://www.youtube.com/@tseries" target="_blank">T-Series</a>
-              </h3>
-              <p>Subscriber Count: 268 Million</p>
-              <p>Videos: 21,298</p>
-              <p>Video views: 259.55 Billion</p>
-              <p>Joined: Mar 13, 2006</p>
-              <p>Owned by: Super Cassettes Industries Limited</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\cocomelon.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #3
-                <a href="https://www.youtube.com/channel/UCbCmjCuTUZos6Inko4u57UQ" target="_blank">CoComelon</a>
-              </h3>
-              <p>Subscriber Count: 177 Million</p>
-              <p>Videos: 1,197</p>
-              <p>Video views: 184.76 Billion</p>
-              <p>Joined: Sep 2, 2006</p>
-              <p>Owned by: Moonbug Entertainment</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\setindia.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #4
-                <a href="https://www.youtube.com/@SETIndia" target="_blank">SET India</a>
-              </h3>
-              <p>Subscriber Count: 174 Million</p>
-              <p>Videos: 140,319</p>
-              <p>Video views: 165.9 Billion</p>
-              <p>Joined: Sep 21, 2006</p>
-              <p>Owned by: Sony Pictures Networks India (SPN)</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\kidsdianashow.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #5
-                <a href="https://www.youtube.com/@KidsDianaShow" target="_blank">Kids Diana Show</a>
-              </h3>
-              <p>Subscriber Count: 123 Million</p>
-              <p>Videos: 1,234</p>
-              <p>Video views: 104.1 Billion</p>
-              <p>Joined: May 12, 2015</p>
-              <p>Owned by: Kidisyuk family</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\VladandNiki.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #7
-                <a href="https://www.youtube.com/@VladandNiki" target="_blank">Vlad and Niki</a>
-              </h3>
-              <p>Subscriber Count: 120 Million</p>
-              <p>Videos: 732</p>
-              <p>Video views: 92.0 Billion</p>
-              <p>Joined: Apr 23, 2018</p>
-              <p>
-                Owned by: Sergey and Victoria Vashketov(Content Media Group FZC,
-                LLC)
-              </p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\pewdiepie.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #8
-                <a href="https://www.youtube.com/@PewDiePie" target="_blank">PewDiePie</a>
-              </h3>
-              <p>Subscriber Count: 111 Million</p>
-              <p>Videos: 4,771</p>
-              <p>Video views: 29.3 Billion</p>
-              <p>Joined: Apr 29, 2010</p>
-              <p>Owned by: Felix Kjellberg</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\Zeemusic.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #9
-                <a href="https://www.youtube.com/@zeemusiccompany" target="_blank">Zee Music Company</a>
-              </h3>
-              <p>Subscriber Count: 108 Million</p>
-              <p>Videos: 11,456</p>
-              <p>Video views: 67.5 Billion</p>
-              <p>Joined: Mar 12, 2014</p>
-              <p>Owned by: Zee Entertainment Enterprises Limited (ZEEL)</p>
-            </div>
-          </li>
-          <br>
-          <li>
-            <img src="Images\WWE.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #10
-                <a href="https://www.youtube.com/@WWE" target="_blank">WWE</a>
-              </h3>
-              <p>Subscriber Count: 102 Million</p>
-              <p>Videos: 77,256</p>
-              <p>Video views: 85.7 Billion</p>
-              <p>Joined: May 11, 2007</p>
-              <p>Owned by: World Wrestling Entertainment Inc(WWE&copy;)</p>
-            </div>
-          </li>
-        </ul>
-      </section>
+      </div>
+    </section>
 
-      <section class="channel-comparison">
-        <h2 id="comparison_tool">Channel Comparison</h2>
-        <form action="#">
-          <select name="channel1">
-            <option>Select a channel</option> 
-            <option>Mrbeast</option>
-            <option>T-series</option>
-            <option>CoComelon</option>
-            <option>SET India</option>
-            <option>Kids Diana Show</option>
-            <option>Vlad and Niki</option>
-            <option>PewDiePie</option>
-            <option>Zee Music Company</option>
-            <option>WWE</option>
-            <option>Osire</option>
-          </select>
-         
-          <select name="channel2">
-            <option>Select a channel</option> 
-            <option>Mrbeast</option>
-            <option>T-series</option>
-            <option>CoComelon</option>
-            <option>SET India</option>
-            <option>Kids Diana Show</option>
-            <option>Vlad and Niki</option>
-            <option>PewDiePie</option>
-            <option>Zee Music Company</option>
-            <option>WWE</option>
-            <option>Osire</option>
-          </select>
-          <button type="submit">Compare</button>
-        </form>
-        <div class="comparison-results">
-          <p>
-            Select two channels to compare metrics like subscriber count, video
-            views, and upload frequency.
-          </p>
+    <main class="container py-5" id="explore">
+      <!-- Featured Creators Section -->
+      <section class="mb-5">
+        <h2 class="text-center mb-4">Top YouTube Creators</h2>
+        <div class="row g-4">
+          <!-- MrBeast Card -->
+          <div class="col-md-4">
+            <div class="card h-100 creator-card">
+              <img src="Images/mrbeast.jpg" class="card-img-top creator-img" alt="MrBeast">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="card-title mb-0">MrBeast</h5>
+                  <span class="badge bg-danger">#1</span>
+                </div>
+                <p class="card-text">
+                  <i class="fas fa-users me-2"></i>294M Subscribers<br>
+                  <i class="fas fa-video me-2"></i>804 Videos<br>
+                  <i class="fas fa-eye me-2"></i>53.3B Views
+                </p>
+                <a href="https://www.youtube.com/@MrBeast" class="btn btn-outline-danger" target="_blank">View Channel</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- T-Series Card -->
+          <div class="col-md-4">
+            <div class="card h-100 creator-card">
+              <img src="Images/Tseries.jpg" class="card-img-top creator-img" alt="T-Series">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="card-title mb-0">T-Series</h5>
+                  <span class="badge bg-danger">#2</span>
+                </div>
+                <p class="card-text">
+                  <i class="fas fa-users me-2"></i>268M Subscribers<br>
+                  <i class="fas fa-video me-2"></i>21,298 Videos<br>
+                  <i class="fas fa-eye me-2"></i>259.55B Views
+                </p>
+                <a href="https://www.youtube.com/@tseries" class="btn btn-outline-danger" target="_blank">View Channel</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- CoComelon Card -->
+          <div class="col-md-4">
+            <div class="card h-100 creator-card">
+              <img src="Images/cocomelon.jpg" class="card-img-top creator-img" alt="CoComelon">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <h5 class="card-title mb-0">CoComelon</h5>
+                  <span class="badge bg-danger">#3</span>
+                </div>
+                <p class="card-text">
+                  <i class="fas fa-users me-2"></i>177M Subscribers<br>
+                  <i class="fas fa-video me-2"></i>1,197 Videos<br>
+                  <i class="fas fa-eye me-2"></i>184.76B Views
+                </p>
+                <a href="https://www.youtube.com/channel/UCbCmjCuTUZos6Inko4u57UQ" class="btn btn-outline-danger" target="_blank">View Channel</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center mt-4">
+          <a href="leaderboard.html" class="btn btn-danger btn-lg">View Full Leaderboard</a>
         </div>
       </section>
 
-      <section class="up-and-coming">
-        <h2>Up-and-Coming YouTubers</h2>
-        <ul class="up-and-coming-list">
-          <li>
-            <img src="Images\Valentino.jpg" alt="Channel Thumbnail">
-            <div class="channel-info">
-              <h3>
-                #1 
-                <a href="#">Valentino</a></h3>
-              <p>Subscribers: 1 Million (Fast Growing!)</p>
-              <p>Videos: 7,256</p>
-              <p>Video views: 85 Billion</p>
-              <p>Joined: May 11, 2007</p>
-              <p>Owned by: Meela Jude Valentino</p>
+      <!-- Features Section -->
+      <section class="mb-5">
+        <h2 class="text-center mb-4">Our Features</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+              <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x text-danger mb-3"></i>
+                <h3 class="h5">Analytics</h3>
+                <p class="card-text">Comprehensive channel statistics and growth metrics</p>
+              </div>
             </div>
-          </li>
-        </ul>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+              <div class="card-body text-center">
+                <i class="fas fa-users fa-3x text-danger mb-3"></i>
+                <h3 class="h5">Comparisons</h3>
+                <p class="card-text">Compare channels and track competitive analysis</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+              <div class="card-body text-center">
+                <i class="fas fa-trending-up fa-3x text-danger mb-3"></i>
+                <h3 class="h5">Trends</h3>
+                <p class="card-text">Stay updated with the latest YouTube trends</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="card h-100 feature-card">
+              <div class="card-body text-center">
+                <i class="fas fa-star fa-3x text-danger mb-3"></i>
+                <h3 class="h5">Rising Stars</h3>
+                <p class="card-text">Discover up-and-coming content creators</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="text-center py-5">
+        <div class="card bg-danger text-white">
+          <div class="card-body py-5">
+            <h2 class="mb-3">Ready to Explore?</h2>
+            <p class="lead mb-4">Start discovering YouTube trends and insights today.</p>
+            <a href="leaderboard.html" class="btn btn-light btn-lg">Get Started</a>
+          </div>
+        </div>
       </section>
     </main>
 
-    <a href="#" style="padding-left: 30px;">Jump to top</a>
-
-    <footer>
-      <p>&copy; TubeTrends 2024</p>
+    <footer class="bg-dark text-light py-4">
+      <div class="container text-center">
+        <p class="mb-0">&copy; TubeTrends 2024</p>
+      </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

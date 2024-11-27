@@ -1,53 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TubeTrends - YouTube Channel Insights</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#dc3545">
+    <title>TubeTrends - Up-and-Coming Creators</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <header>
-      <h1>TubeTrends</h1>
-      <p>Uncover trends and discover the next big YouTube stars.</p>
-    </header>
-
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="leaderboard.html">Leaderboards</a></li>
-        <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-        <li><a href="trends.html" class="active">Trends</a></li>
-        <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
-      </ul>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                TubeTrends
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leaderboard.html">Leaderboards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparisontool.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trends.html">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="upandcoming.html">Up-and-Coming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="shop.html">Shop</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="about.html">About</a>
+                </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-    
-    <main>
-        <section class="up-and-coming">
-            <h2>Up-and-Coming YouTubers</h2>
-            <ul class="up-and-coming-list">
-              <li>
-                <img src="Images/Valentino.jpg" alt="Channel Thumbnail">
-                <div class="channel-info">
-                  <h3>
-                    #1 
-                    <a href="#">Valentino</a></h3>
-                  <p>Subscribers: 1 Million (Fast Growing!)</p>
-                  <p>Videos: 7,256</p>
-                  <p>Video views: 85 Billion</p>
-                  <p>Joined: May 11, 2007</p>
-                  <p>Owned by: Meela Jude Valentino</p>
+
+    <main class="container py-4">
+        <h1 class="text-center mb-4">Rising YouTube Stars</h1>
+
+        <!-- Category Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select class="form-select" id="niche-select">
+                            <option value="all">All Niches</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="tech">Technology</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="education">Education</option>
+                            <option value="entertainment">Entertainment</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select" id="growth-select">
+                            <option value="all">Growth Rate</option>
+                            <option value="fast">Fastest Growing</option>
+                            <option value="consistent">Most Consistent</option>
+                            <option value="new">Newest Channels</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search creators...">
+                            <button class="btn btn-danger">Search</button>
+                        </div>
+                    </div>
                 </div>
-              </li>
-            </ul>
-          </section>
+            </div>
+        </div>
+
+        <!-- Featured Creator -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-2">
+                        <img src="Images/MrWho is the Boss.jpg" class="rounded-circle img-fluid mb-3 mb-md-0" alt="Featured Creator">
+                    </div>
+                    <div class="col-md-7">
+                        <span class="badge bg-danger mb-2">Featured Creator</span>
+                        <h3>MrWhoIsTheBoss</h3>
+                        <p class="mb-2">A rising star in the tech review space, bringing fresh perspectives on the latest gadgets.</p>
+                        <div class="d-flex gap-3">
+                            <div>
+                                <small class="text-muted">Subscribers</small>
+                                <p class="mb-0">250K</p>
+                            </div>
+                            <div>
+                                <small class="text-muted">Monthly Growth</small>
+                                <p class="mb-0 text-success">+45%</p>
+                            </div>
+                            <div>
+                                <small class="text-muted">Engagement Rate</small>
+                                <p class="mb-0">12.5%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-md-end mt-3 mt-md-0">
+                        <a href="https://www.youtube.com/@Mrwhosetheboss" class="btn btn-danger">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Creator Grid -->
+        <div class="row g-4">
+            <!-- Creator Card 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="Images/Gaming.jpg" class="rounded-circle me-3" width="60" height="60" alt="Creator">
+                            <div>
+                                <h5 class="card-title mb-0">Gaming Pro</h5>
+                                <small class="text-muted">Gaming</small>
+                            </div>
+                        </div>
+                        <div class="row text-center mb-3">
+                            <div class="col">
+                                <h6>Subscribers</h6>
+                                <p class="mb-0">150K</p>
+                                <small class="text-success">+25%</small>
+                            </div>
+                            <div class="col">
+                                <h6>Videos</h6>
+                                <p class="mb-0">85</p>
+                                <small class="text-muted">Weekly: 2</small>
+                            </div>
+                            <div class="col">
+                                <h6>Engagement</h6>
+                                <p class="mb-0">8.5%</p>
+                                <small class="text-success">+2%</small>
+                            </div>
+                        </div>
+                        <p class="card-text">Rising gaming content creator known for strategy game walkthroughs and tutorials.</p>
+                        <div class="d-grid">
+                            <a href="#" class="btn btn-outline-danger">View Channel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Creator Card 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="Images/science.jpg" class="rounded-circle me-3" width="60" height="60" alt="Creator">
+                            <div>
+                                <h5 class="card-title mb-0">Science Explained</h5>
+                                <small class="text-muted">Education</small>
+                            </div>
+                        </div>
+                        <div class="row text-center mb-3">
+                            <div class="col">
+                                <h6>Subscribers</h6>
+                                <p class="mb-0">180K</p>
+                                <small class="text-success">+30%</small>
+                            </div>
+                            <div class="col">
+                                <h6>Videos</h6>
+                                <p class="mb-0">65</p>
+                                <small class="text-muted">Weekly: 1</small>
+                            </div>
+                            <div class="col">
+                                <h6>Engagement</h6>
+                                <p class="mb-0">10.2%</p>
+                                <small class="text-success">+1.5%</small>
+                            </div>
+                        </div>
+                        <p class="card-text">Making complex scientific concepts accessible through engaging animations and explanations.</p>
+                        <div class="d-grid">
+                            <a href="#" class="btn btn-outline-danger">View Channel</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more creator cards as needed -->
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-4">
+            <button class="btn btn-outline-danger btn-lg">Load More Creators</button>
+        </div>
     </main>
-    
-    <footer>
-        <p>&copy; TubeTrends 2024</p>
-      </footer>
-  </body>
+
+    <footer class="bg-dark text-light py-4 mt-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; TubeTrends 2024</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle responsive tables
+            const tables = document.querySelectorAll('table');
+            tables.forEach(table => {
+                if (!table.parentElement.classList.contains('table-responsive')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.classList.add('table-responsive');
+                    table.parentElement.insertBefore(wrapper, table);
+                    wrapper.appendChild(table);
+                }
+            });
+
+            // Handle responsive images
+            const images = document.querySelectorAll('img:not(.rounded-circle)');
+            images.forEach(img => {
+                img.classList.add('img-fluid');
+            });
+
+            // Handle mobile menu closing after click
+            const navLinks = document.querySelectorAll('.navbar-nav a');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 992) {
+                        navbarCollapse.classList.remove('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
 </html>

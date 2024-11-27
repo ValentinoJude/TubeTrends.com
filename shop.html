@@ -1,143 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TubeTrends Shop - Merchandise</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeTrends - Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>TubeTrends Shop</h1>
-    <p>Browse our exclusive TubeTrends merchandise!</p>
-  </header>
-
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leaderboard.html">Leaderboards</a></li>
-      <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-      <li><a href="trends.html" class="active">Trends</a></li>
-      <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="shop.html" class="active">Shop</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <section class="shop-filters">
-      <div>
-        <label for="sort-select">Sort by:</label>
-        <select id="sort-select">
-          <option value="popularity">Popularity</option>
-          <option value="price-low-high">Price: Low to High</option>
-          <option value="price-high-low">Price: High to Low</option>
-          <option value="rating">Rating</option>
-        </select>
-      </div>
-    </section>
-
-    <section class="merchandise">
-      <h2>BUY OUR MERCH</h2>
-      <ul class="merch-list">
-        <li>
-          <img src="Images/Screenshot (27).png" alt="TubeTrends T-Shirt">
-          <div class="merch-info">
-            <h3>TubeTrends T-Shirt</h3>
-            <p>Price: $25.00</p>
-            <label for="size">Size:</label>
-            <select id="size">
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-              <option value="xl">XL</option>
-            </select>
-            <label for="quantity">Quantity:</label>
-            <input type="number" id="quantity" min="1" value="1">
-            <button class="add-to-cart">Add to Cart</button>
-            <div class="customer-reviews">
-              <h4>Customer Reviews:</h4>
-              <p>Rating: ★★★★☆ (4/5)</p>
-              <p>"Great quality and fits perfectly!" - User123</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                TubeTrends
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leaderboard.html">Leaderboards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparisontool.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trends.html">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                </ul>
             </div>
-          </div>
-        </li>
-        <li>
-            <img src="Images/Screenshot (37).png" alt="TubeTrends Hoodie">
-            <div class="merch-info">
-              <h3>TubeTrends Hoodie</h3>
-              <p>Price: $30.00</p>
-              <label for="size">Size:</label>
-              <select id="size">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="xl">XL</option>
-              </select>
-              <label for="quantity">Quantity:</label>
-              <input type="number" id="quantity" min="1" value="1">
-              <button class="add-to-cart">Add to Cart</button>
-              <div class="customer-reviews">
-                <h4>Customer Reviews:</h4>
-                <p>Rating: ★★★★☆ (4/5)</p>
-                <p>"Great quality and fits perfectly!" - User123</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="Images/Screenshot (38).png" alt="TubeTrends Hat">
-            <div class="merch-info">
-              <h3>TubeTrends hat</h3>
-              <p>Price: $5.00</p>
-              <label for="size">Size:</label>
-              <select id="size">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="xl">XL</option>
-              </select>
-              <label for="quantity">Quantity:</label>
-              <input type="number" id="quantity" min="1" value="1">
-              <button class="add-to-cart">Add to Cart</button>
-              <div class="customer-reviews">
-                <h4>Customer Reviews:</h4>
-                <p>Rating: ★★★★☆ (4/5)</p>
-                <p>"Great quality and fits perfectly!" - User123</p>
-              </div>
-            </div>
-          </li>
-          <li>
-            <img src="Images/shorts.png" alt="TubeTrends shorts">
-            <div class="merch-info">
-              <h3>TubeTrends shorts</h3>
-              <p>Price: $35.00</p>
-              <label for="size">Size:</label>
-              <select id="size">
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="xl">XL</option>
-              </select>
-              <label for="quantity">Quantity:</label>
-              <input type="number" id="quantity" min="1" value="1">
-              <button class="add-to-cart">Add to Cart</button>
-              <div class="customer-reviews">
-                <h4>Customer Reviews:</h4>
-                <p>Rating: ★★★★☆ (4/5)</p>
-                <p>"Great quality and fits perfectly!" - User123</p>
-              </div>
-            </div>
-          </li>
-        <!-- Repeat for additional products -->
-      </ul>
-    </section>
-  </main>
+        </div>
+    </nav>
 
-  <footer>
-    <p>&copy; TubeTrends 2024</p>
-  </footer>
+    <main class="container py-4">
+        <h1 class="text-center mb-4">TubeTrends Shop</h1>
+        
+        <!-- Shop Filters -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select class="form-select" id="category-select">
+                            <option value="all">All Categories</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="digital">Digital Products</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-select" id="sort-select">
+                            <option value="popularity">Sort by Popularity</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="newest">Newest First</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search products...">
+                            <button class="btn btn-danger">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <script src="shop.js"></script>
+        <!-- Products Grid -->
+        <div class="row g-4">
+            <!-- Product Card 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 product-card">
+                    <div class="position-relative">
+                        <img src="Images/Screenshot (27).png" class="card-img-top product-img" alt="TubeTrends T-Shirt">
+                        <span class="badge bg-danger position-absolute top-0 end-0 m-2">New</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">TubeTrends T-Shirt</h5>
+                        <p class="card-text text-muted mb-2">Classic comfort meets style</p>
+                        <div class="mb-3">
+                            <span class="h5 text-danger">$25.00</span>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select mb-2" id="size">
+                                <option value="">Select Size</option>
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                                <option value="xl">XL</option>
+                            </select>
+                            <div class="input-group">
+                                <input type="number" class="form-control" value="1" min="1">
+                                <button class="btn btn-danger">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <span class="ms-2">(4.0)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 product-card">
+                    <div class="position-relative">
+                        <img src="Images/Screenshot (37).png" class="card-img-top product-img" alt="TubeTrends Hoodie">
+                        <span class="badge bg-success position-absolute top-0 end-0 m-2">Best Seller</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">TubeTrends Hoodie</h5>
+                        <p class="card-text text-muted mb-2">Stay cozy and stylish</p>
+                        <div class="mb-3">
+                            <span class="h5 text-danger">$30.00</span>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select mb-2" id="size">
+                                <option value="">Select Size</option>
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                                <option value="xl">XL</option>
+                            </select>
+                            <div class="input-group">
+                                <input type="number" class="form-control" value="1" min="1">
+                                <button class="btn btn-danger">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                            <span class="ms-2">(4.5)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add more product cards here -->
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; TubeTrends 2024</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

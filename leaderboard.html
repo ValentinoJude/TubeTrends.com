@@ -1,80 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TubeTrends - Leaderboards</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Theme colors (adjust as needed) */
-    body {
-      background-color: #f5f5f5;
-    }
-   
-    a {
-      color: #007bff;
-    }
-    h2 {
-      color: #212529;
-    }
-    .leaderboard-filters select {
-      margin-right: 10px;
-      padding: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeTrends - Leaderboards</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>TubeTrends</h1>
-    <p>Uncover trends and discover the next big YouTube stars</p>
-  </header>
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leaderboard.html">Leaderboards</a></li>
-      <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-      <li><a href="trends.html" class="active">Trends</a></li>
-      <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="shop.html" class="active">Shop</a></li>
-    </ul>
-  </nav>
-  <?php include("header.html"); ?>
-  <main>
-    <section class="leaderboards">
-      <h2>Top 100 YouTube Channels</h2>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                TubeTrends
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="leaderboard.html">Leaderboards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparisontool.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trends.html">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="shop.html">Shop</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="about.html">About</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-      <div class="leaderboard-filters">
-        <select name="category" id="category-select">
-          <option value="all">All Categories</option>
-          <option value="entertainment">Entertainment</option>
-          <option value="gaming">Gaming</option>
-          <option value="streamers">Streamers</option>
-          <option value="lifestyle">Lifestyle</option>
-          <option value="tech">Tech</option>
-          <option value="education">Education and Science</option>
-          <option value="news">News</option>
-        </select>
-        <select name="sort-by" id="sort-by">
-          <option value="subscribers">Subscribers (High to Low)</option>
-          <option value="views">Video Views (High to Low)</option>
-          <option value="upload-rate">Upload Rate (Most Frequent)</option>
-        </select>
-      </div>
+    <main class="container py-4">
+        <h1 class="text-center mb-4">Top 100 YouTube Channels</h1>
 
-      <ul class="leaderboard-list">
-        </ul>
-    </section>
-  </main>
+        <!-- Filters Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <select class="form-select" id="category-select">
+                            <option value="all">All Categories</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="streamers">Streamers</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="tech">Tech</option>
+                            <option value="education">Education and Science</option>
+                            <option value="news">News</option>
+                            <option value="sports">Sports</option>
+                        </select>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search channels...">
+                            <button class="btn btn-danger" type="button">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <?php include("footer.html"); ?>
-  <footer>
-    <p>&copy; TubeTrends 2024</p>
-  </footer>
+        <!-- Leaderboard List -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body p-0">
+                        <div class="list-group list-group-flush">
+                            <!-- MrBeast -->
+                            <div class="list-group-item p-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="position-relative">
+                                        <img src="Images/mrbeast.jpg" class="rounded-circle" width="80" height="80" alt="MrBeast">
+                                        <span class="position-absolute top-0 start-0 badge bg-danger">#1</span>
+                                    </div>
+                                    <div class="ms-3 flex-grow-1">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h5 class="mb-0">
+                                                <a href="https://www.youtube.com/@MrBeast" class="text-decoration-none" target="_blank">MrBeast</a>
+                                            </h5>
+                                            <span class="badge bg-success">↑ 12%</span>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Subscribers</small>
+                                                <p class="mb-0">294M</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Videos</small>
+                                                <p class="mb-0">804</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Views</small>
+                                                <p class="mb-0">53.3B</p>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <small class="text-muted">Joined</small>
+                                                <p class="mb-0">Feb 20, 2012</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-  <script src="script.js"></script>
+                            <!-- Add more channels following the same pattern -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; TubeTrends 2024</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

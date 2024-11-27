@@ -1,75 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TubeTrends Blog</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TubeTrends - Blog</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-  <header>
-    <h1>TubeTrends Blog</h1>
-    <p>Stay updated with the latest trends and insights.</p>
-  </header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                TubeTrends
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leaderboard.html">Leaderboards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparisontool.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trends.html">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" href="shop.html">Shop</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" href="about.html">About</a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="leaderboard.html">Leaderboards</a></li>
-      <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-      <li><a href="trends.html" class="active">Trends</a></li>
-      <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="shop.html" class="active">Shop</a></li>
-    </ul>
-  </nav>
+    <main class="container py-4">
+        <h1 class="text-center mb-4">TubeTrends Blog</h1>
 
-  <main>
-    <section class="blog-categories">
-      <label for="category-select">Filter by Category:</label>
-      <select id="category-select">
-        <option value="all">All</option>
-        <option value="trending">Trending</option>
-        <option value="tips">Tips & Tricks</option>
-        <option value="reviews">Reviews</option>
-        <option value="news">News</option>
-      </select>
-    </section>
+        <!-- Blog Categories -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <button class="btn btn-outline-danger active">All</button>
+                    <button class="btn btn-outline-danger">Tips & Tricks</button>
+                    <button class="btn btn-outline-danger">Success Stories</button>
+                    <button class="btn btn-outline-danger">Industry News</button>
+                    <button class="btn btn-outline-danger">Analytics</button>
+                    <button class="btn btn-outline-danger">Tutorials</button>
+                </div>
+            </div>
+        </div>
 
-    <section class="blog-posts">
-      <ul class="post-list">
-        <li>
-          <h2>Could this be the end of Mr.Beast .</h2>
-          <p class="post-meta">Category: <a href="#">Trending</a> | Tags: <a href="#">YouTube</a>, <a href="#">Trends</a></p>
-          <img src="Images/download.jpg">
-          <p>YouTuber Mr.Beast faces back lash after long time friend Ava Tyson caught inapproprietly texting minors.</p>
-          <a href="post1.html">Read more</a>
-        </li>
-        <li>
-            <h2>IshowSpeed temporarily burned on YouTube.</h2>
-            <p class="post-meta">Category: <a href="#">Trending</a> | Tags: <a href="#">YouTube</a>, <a href="#">Trends</a></p>
-            <img src="Images/speed.jpg" height="200px" width="200px">
-            <p>YouTuber IshowSpeed temporarilly burned from YouTube for jumping over a car while on live.</p>
-            <a href="post2.html">Read more</a>
-          </li>
-          <li>
-            <h2>Adin Ross Interviews Trump.</h2>
-            <p class="post-meta">Category: <a href="#">Trending</a> | Tags: <a href="#">YouTube</a>, <a href="#">Trends</a></p>
-            <img src="Images/Adin ross.jpg">
-            <p>YouTuber Adin Ross invited former US President Donald Trump for a live stream.</p>
-              <p>He gifted the 45th President a Cyber Truck.</p> 
-            <a href="post3.html">Read more</a>
-          </li>
-        <!-- Repeat for additional blog posts -->
-      </ul>
-    </section>
-  </main>
+        <!-- Featured Post -->
+        <div class="card mb-4">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="Images/mrbeast.jpg" class="img-fluid rounded-start h-100 object-fit-cover" alt="Featured Post">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <span class="badge bg-danger mb-2">Featured</span>
+                        <h2 class="card-title">How MrBeast Built a YouTube Empire</h2>
+                        <p class="card-text">An in-depth analysis of MrBeast's journey from small creator to YouTube mogul, including strategies, challenges, and key success factors.</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="fas fa-user me-2"></i>By John Smith
+                                <i class="fas fa-calendar ms-3 me-2"></i>March 15, 2024
+                                <i class="fas fa-comments ms-3 me-2"></i>45 Comments
+                            </small>
+                        </p>
+                        <a href="#" class="btn btn-danger">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  <footer>
-    <p>&copy; TubeTrends 2024</p>
-  </footer>
+        <!-- Blog Posts Grid -->
+        <div class="row g-4">
+            <!-- Blog Post 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="Images/seo.jpg" class="card-img-top" alt="Blog Post">
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">Tips & Tricks</span>
+                        <h5 class="card-title">10 Ways to Improve Your YouTube SEO</h5>
+                        <p class="card-text">Learn the essential techniques to optimize your videos for YouTube's search algorithm.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">March 10, 2024</small>
+                            <a href="#" class="btn btn-outline-danger btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <script src="blog.js"></script>
+            <!-- Blog Post 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="Images/zero.jpg" class="card-img-top" alt="Blog Post">
+                    <div class="card-body">
+                        <span class="badge bg-success mb-2">Success Stories</span>
+                        <h5 class="card-title">From 0 to 1M: A Creator's Journey</h5>
+                        <p class="card-text">An inspiring story of how a small creator reached their first million subscribers.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">March 8, 2024</small>
+                            <a href="#" class="btn btn-outline-danger btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blog Post 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="Images/Algorithm.jpg" class="card-img-top" alt="Blog Post">
+                    <div class="card-body">
+                        <span class="badge bg-info mb-2">Industry News</span>
+                        <h5 class="card-title">YouTube's Latest Algorithm Update</h5>
+                        <p class="card-text">Breaking down the recent changes to YouTube's recommendation system.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">March 5, 2024</small>
+                            <a href="#" class="btn btn-outline-danger btn-sm">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; TubeTrends 2024</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

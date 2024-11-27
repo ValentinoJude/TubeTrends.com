@@ -4,82 +4,136 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TubeTrends - Trending Insights</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header>
-      <h1>TubeTrends</h1>
-      <p>Explore trending topics, creators, and videos on YouTube.</p>
-    </header>
-
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="leaderboard.html">Leaderboards</a></li>
-        <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-        <li><a href="trends.html" class="active">Trends</a></li>
-        <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="shop.html">Shop</a></li>
-      </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          TubeTrends
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="leaderboard.html">Leaderboards</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="comparisontool.html">Compare</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="trends.html">Trends</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="shop.html">Shop</a>
+              <li class="nav-item">
+                <a class="nav-link active" href="about.html">About</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
-    <main>
-      <section class="trending-topics">
-        
-        <ul class="trending-list">
-        <h2>Trending Topics</h2>
-        <hr>
-          <li><a href="#">#AIRevolution</a></li>
-          <li><a href="#">#GamingExtravaganza</a></li>
-          <li><a href="#">#ViralDanceMoves</a></li>
-          <li><a href="#">#EcoLiving</a></li>
-          <li><a href="#">#TechReviews</a></li>
-        </ul>
+    <main class="container py-4">
+      <!-- Trending Topics Section -->
+      <section class="row mb-4">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Trending Topics</h2>
+              <hr>
+              <ul class="list-unstyled trending-list">
+                <li><a href="#">#AIRevolution</a></li>
+                <li><a href="#">#GamingExtravaganza</a></li>
+                <li><a href="#">#ViralDanceMoves</a></li>
+                <li><a href="#">#EcoLiving</a></li>
+                <li><a href="#">#TechReviews</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Top Videos Section -->
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Top Trending Videos</h2>
+              <hr>
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <div class="card h-100">
+                    <img src="Images/mrbeastvid.jpg" class="card-img-top" alt="Thumbnail">
+                    <div class="card-body">
+                      <h5 class="card-title">Epic Challenge by MrBeast</h5>
+                      <p class="card-text">Views: 15M | Uploaded: 2 days ago</p>
+                      <p class="card-text"><small class="text-muted">Category: Entertainment</small></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <div class="card h-100">
+                    <img src="Images/pewdiepiegame.jpg" class="card-img-top" alt="Thumbnail">
+                    <div class="card-body">
+                      <h5 class="card-title">Game Walkthrough by PewDiePie</h5>
+                      <p class="card-text">Views: 10M | Uploaded: 1 day ago</p>
+                      <p class="card-text"><small class="text-muted">Category: Gaming</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <section class="top-videos">
-        <ul class="video-list">
-            <h2>Top Trending Videos</h2>
-            <hr>
-          <li>
-            <img src="Images/mrbeastvid.jpg" alt="Thumbnail">
-            <div class="video-info">
-              <h3><a href="#">Epic Challenge by MrBeast</a></h3>
-              <p>Views: 15M | Uploaded: 2 days ago</p>
-              <p>Category: Entertainment</p>
+      <!-- Trending Creators Section -->
+      <section class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Trending Creators</h2>
+              <hr>
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <div class="card h-100">
+                    <img src="Images/liam.jpg" class="card-img-top creator-img" alt="Profile">
+                    <div class="card-body">
+                      <h5 class="card-title">Liam Gimig</h5>
+                      <p class="card-text">Subscribers: 78.3k</p>
+                      <p class="card-text"><small class="text-muted">Known For: Entertainment</small></p>
+                      <a href="#" class="btn btn-primary">View Channel</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Add more creator cards as needed -->
+              </div>
             </div>
-          </li>
-          <li>
-            <img src="Images/pewdiepiegame.jpg" alt="Thumbnail">
-            <div class="video-info">
-              <h3><a href="#">Game Walkthrough by PewDiePie</a></h3>
-              <p>Views: 10M | Uploaded: 1 day ago</p>
-              <p>Category: Gaming</p>
-            </div>
-          </li>
-        </ul>
-      </section>
-
-      <section class="trending-creators">
-        <ul class="creator-list">
-            <h2>Trending Creators</h2>
-           <hr>
-          <li>
-            <img src="Images/liam.jpg" alt="Profile">
-            <div class="creator-info">
-              <h3><a href="https://www.youtube.com/channel/UCdknppafTKGg1NCD9oaaQvg">Liam Gimig</a></h3>
-              <p>Subscribers: 78.3k</p>
-              <p>Known For: Entertainment</p>
-            </div>
-          </li>
-        </ul>
+          </div>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>&copy; TubeTrends 2024</p>
+    <footer class="bg-dark text-light py-4 mt-4">
+      <div class="container text-center">
+        <p class="mb-0">&copy; TubeTrends 2024</p>
+      </div>
     </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

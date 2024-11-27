@@ -1,36 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TubeTrends - YouTube Channel Insights</title>
+    <title>TubeTrends - About Us</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <header>
-      <h1>TubeTrends</h1>
-      <p>Uncover trends and discover the next big YouTube stars.</p>
-    </header>
-
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="leaderboard.html">Leaderboards</a></li>
-        <li><a href="comparisontool.html">Channel Comparison Tool</a></li>
-        <li><a href="trends.html" class="active">Trends</a></li>
-        <li><a href="upandcoming.html">Up-and-Coming Channels</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="blog.html">Blog</a></li>
-        <li><a href="shop.html" class="active">Shop</a></li>
-      </ul>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+            TubeTrends
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="leaderboard.html">Leaderboards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparisontool.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trends.html">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
-<main>
-  <img src="Images\Screenshot (39).png" width="500px">
-  <p>TubeTrends is a website dedicated to analyzing and visualizing trends on YouTube.</p>
-  <p>It focuses on providing users and companies looking to sponsor different channels with insights into the growth and popularity of YouTube channels.</p>
-</main>
-    <footer>
-        <p>&copy; TubeTrends 2024</p>
-      </footer>
-  </body>
+
+    <!-- Hero Section -->
+    <section class="hero-section bg-danger text-white py-5 mb-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold mb-3">About TubeTrends</h1>
+                    <p class="lead mb-4">Empowering creators and brands with powerful YouTube analytics and insights.</p>
+                </div>
+                <div class="col-md-6">
+                    <img src="Images/Screenshot (39).png" class="img-fluid rounded shadow-lg" alt="TubeTrends Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container py-4">
+        <!-- Our Mission -->
+        <section class="mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Our Mission</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-chart-line fa-3x text-danger mb-3"></i>
+                                <h3 class="h5">Data-Driven Insights</h3>
+                                <p>Providing comprehensive analytics to help creators make informed decisions.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-users fa-3x text-danger mb-3"></i>
+                                <h3 class="h5">Community Growth</h3>
+                                <p>Supporting creators in building and engaging with their audiences effectively.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <i class="fas fa-rocket fa-3x text-danger mb-3"></i>
+                                <h3 class="h5">Innovation</h3>
+                                <p>Continuously evolving our tools to meet the changing needs of content creators.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="mb-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Key Features</h2>
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-analytics fa-2x text-danger me-3 mt-1"></i>
+                                <div>
+                                    <h3 class="h5">Analytics Tools</h3>
+                                    <p>Comprehensive YouTube analytics, including subscriber growth, views, and engagement metrics.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-chart-bar fa-2x text-danger me-3 mt-1"></i>
+                                <div>
+                                    <h3 class="h5">Comparison Tools</h3>
+                                    <p>Compare performance metrics between creators and track competitive analysis.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-trending-up fa-2x text-danger me-3 mt-1"></i>
+                                <div>
+                                    <h3 class="h5">Trend Analysis</h3>
+                                    <p>Stay ahead with real-time trending topics and content performance insights.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="d-flex align-items-start">
+                                <i class="fas fa-store fa-2x text-danger me-3 mt-1"></i>
+                                <div>
+                                    <h3 class="h5">Creator Support</h3>
+                                    <p>Tools for merchandising, fan subscriptions, and community engagement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section>
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title mb-4">Get in Touch</h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4 mb-md-0">
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-danger">Send Message</button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h5 mb-3">Contact Information</h3>
+                            <p><i class="fas fa-envelope me-2 text-danger"></i>info@tubetrends.com</p>
+                            <p><i class="fas fa-phone me-2 text-danger"></i>+1 (555) 123-4567</p>
+                            <p><i class="fas fa-map-marker-alt me-2 text-danger"></i>123 Creator Street, Digital City, DC 12345</p>
+                            <div class="social-links mt-4">
+                                <a href="#" class="text-danger me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                                <a href="#" class="text-danger me-3"><i class="fab fa-facebook fa-2x"></i></a>
+                                <a href="#" class="text-danger me-3"><i class="fab fa-instagram fa-2x"></i></a>
+                                <a href="#" class="text-danger"><i class="fab fa-linkedin fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-light py-4 mt-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; TubeTrends 2024</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
