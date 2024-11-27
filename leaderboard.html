@@ -58,23 +58,36 @@
         <div class="card mb-4">
             <div class="card-body">
                 <div class="row g-3">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <select class="form-select" id="category-select">
                             <option value="all">All Categories</option>
                             <option value="entertainment">Entertainment</option>
                             <option value="gaming">Gaming</option>
-                            <option value="streamers">Streamers</option>
-                            <option value="lifestyle">Lifestyle</option>
-                            <option value="tech">Tech</option>
-                            <option value="education">Education and Science</option>
-                            <option value="news">News</option>
+                            <option value="education">Education</option>
+                            <option value="music">Music</option>
                             <option value="sports">Sports</option>
                         </select>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-3">
+                        <select class="form-select" id="sort-select">
+                            <option value="subscribers">Sort by Subscribers</option>
+                            <option value="views">Sort by Views</option>
+                            <option value="growth">Sort by Growth Rate</option>
+                            <option value="engagement">Sort by Engagement</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" id="time-select">
+                            <option value="all-time">All Time</option>
+                            <option value="this-month">This Month</option>
+                            <option value="this-week">This Week</option>
+                            <option value="today">Today</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search channels...">
-                            <button class="btn btn-danger" type="button">Search</button>
+                            <button class="btn btn-danger">Search</button>
                         </div>
                     </div>
                 </div>
@@ -130,6 +143,20 @@
                 </div>
             </div>
         </div>
+
+        <nav aria-label="Leaderboard pagination" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
     </main>
 
     <footer class="bg-dark text-light py-4 mt-4">
@@ -140,5 +167,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="leaderboard.js"></script>
 </body>
 </html>

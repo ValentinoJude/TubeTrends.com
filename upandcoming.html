@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Navbar -->
@@ -120,6 +121,167 @@
             </div>
         </div>
 
+        <!-- Add before the creator listings -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="h5 mb-3">How We Find Rising Stars</h3>
+                <div class="row">
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <div class="algorithm-step p-3">
+                            <i class="fas fa-chart-line fa-2x text-danger mb-3"></i>
+                            <h4 class="h6">Growth Analysis</h4>
+                            <p class="small mb-0">We analyze subscriber and view growth patterns over time</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <div class="algorithm-step p-3">
+                            <i class="fas fa-users fa-2x text-danger mb-3"></i>
+                            <h4 class="h6">Engagement Metrics</h4>
+                            <p class="small mb-0">We measure likes, comments, and share ratios</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center mb-3 mb-md-0">
+                        <div class="algorithm-step p-3">
+                            <i class="fas fa-clock fa-2x text-danger mb-3"></i>
+                            <h4 class="h6">Consistency Check</h4>
+                            <p class="small mb-0">We evaluate posting frequency and content quality</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <div class="algorithm-step p-3">
+                            <i class="fas fa-star fa-2x text-danger mb-3"></i>
+                            <h4 class="h6">Quality Score</h4>
+                            <p class="small mb-0">We calculate an overall creator potential score</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Detailed Metrics -->
+                <div class="mt-4">
+                    <button class="btn btn-outline-danger btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#metricsDetail">
+                        View Detailed Metrics
+                    </button>
+                    
+                    <div class="collapse mt-3" id="metricsDetail">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title h6">Growth Indicators</h5>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Subscriber growth rate > 50% monthly
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                View count increasing steadily
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Positive trend in watch time
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title h6">Engagement Factors</h5>
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="mb-2">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Like-to-view ratio > 8%
+                                            </li>
+                                            <li class="mb-2">
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Comment-to-view ratio > 1%
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-check-circle text-success me-2"></i>
+                                                Share rate increasing over time
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add after the algorithm explanation -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="h5 mb-3">Creator Success Prediction</h3>
+                <div class="row">
+                    <!-- Growth Chart -->
+                    <div class="col-md-8">
+                        <div class="chart-container p-3 bg-white rounded">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="chart-title">Subscriber Growth Trajectory</div>
+                                <div class="btn-group btn-group-sm">
+                                    <button class="btn btn-outline-danger active" data-period="6">6 Months</button>
+                                    <button class="btn btn-outline-danger" data-period="12">1 Year</button>
+                                    <button class="btn btn-outline-danger" data-period="24">2 Years</button>
+                                </div>
+                            </div>
+                            <div style="height: 300px;">
+                                <canvas id="growthPrediction"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Prediction Details -->
+                    <div class="col-md-4">
+                        <div class="prediction-stats p-3">
+                            <div class="current-stats mb-4">
+                                <h6 class="text-muted mb-3">Current Growth Rate</h6>
+                                <div class="d-flex align-items-center">
+                                    <h3 class="mb-0">47%</h3>
+                                    <span class="badge bg-success ms-2">↑ 12%</span>
+                                </div>
+                                <small class="text-muted">Monthly increase</small>
+                            </div>
+
+                            <div class="milestones">
+                                <h6 class="text-muted mb-3">Predicted Milestones</h6>
+                                <div class="milestone-item mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>100K Subscribers</span>
+                                        <span class="badge bg-danger">3 months</span>
+                                    </div>
+                                    <div class="progress mt-2" style="height: 5px;">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 65%"></div>
+                                    </div>
+                                </div>
+                                <div class="milestone-item mb-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>500K Subscribers</span>
+                                        <span class="badge bg-danger">8 months</span>
+                                    </div>
+                                    <div class="progress mt-2" style="height: 5px;">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 40%"></div>
+                                    </div>
+                                </div>
+                                <div class="milestone-item">
+                                    <div class="d-flex justify-content-between">
+                                        <span>1M Subscribers</span>
+                                        <span class="badge bg-danger">15 months</span>
+                                    </div>
+                                    <div class="progress mt-2" style="height: 5px;">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 25%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Creator Grid -->
         <div class="row g-4">
             <!-- Creator Card 1 -->
@@ -201,6 +363,46 @@
         <div class="text-center mt-4">
             <button class="btn btn-outline-danger btn-lg">Load More Creators</button>
         </div>
+
+        <!-- Add after the creator listings -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="h5">Recommended Collaborations</h3>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="collab-card p-3 border rounded">
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="path/to/creator1.jpg" class="rounded-circle me-2" width="40">
+                                <div>
+                                    <h6 class="mb-0">Creator Name</h6>
+                                    <small class="text-muted">Similar Content Style</small>
+                                </div>
+                            </div>
+                            <div class="collab-stats small">
+                                <div>Content Match: 85%</div>
+                                <div>Audience Overlap: 40%</div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-danger mt-2">Connect</button>
+                        </div>
+                    </div>
+                    <!-- Add more collaboration cards -->
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-body">
+                <h3 class="h5">Growth Strategy Tips</h3>
+                <div class="tips-carousel">
+                    <div class="tip-card p-3">
+                        <i class="fas fa-lightbulb text-danger mb-2"></i>
+                        <h4 class="h6">Best Upload Times</h4>
+                        <p class="small mb-0">Based on your audience analytics, try posting between 3 PM - 7 PM EST for maximum engagement.</p>
+                    </div>
+                    <!-- Add more tip cards -->
+                </div>
+            </div>
+        </div>
     </main>
 
     <footer class="bg-dark text-light py-4 mt-4">
@@ -239,6 +441,50 @@
                         navbarCollapse.classList.remove('show');
                     }
                 });
+            });
+
+            // Test if Chart.js is loaded
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js is not loaded!');
+                return;
+            }
+
+            // Get the canvas element
+            const ctx = document.getElementById('growthPrediction');
+            
+            if (!ctx) {
+                console.error('Canvas element not found!');
+                return;
+            }
+
+            // Create the chart
+            const growthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Predicted Growth',
+                        data: [10000, 25000, 45000, 70000, 85000, 100000],
+                        borderColor: '#dc3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
             });
         });
     </script>
