@@ -116,4 +116,33 @@ document.addEventListener('DOMContentLoaded', function() {
             initChart(parseInt(this.dataset.period));
         });
     });
+
+    function initializeAdvancedFilters() {
+        const filterForm = document.createElement('div');
+        filterForm.innerHTML = `
+            <div class="advanced-filters collapse" id="advancedFilters">
+                <div class="card card-body mt-2">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Date Range</label>
+                            <div class="input-group">
+                                <input type="date" class="form-control" id="startDate">
+                                <input type="date" class="form-control" id="endDate">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Multiple Categories</label>
+                            <select class="form-select" id="multiCategory" multiple>
+                                <option value="gaming">Gaming</option>
+                                <option value="tech">Technology</option>
+                                <option value="education">Education</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.querySelector('.card-body .row').appendChild(filterForm);
+    }
 }); 
