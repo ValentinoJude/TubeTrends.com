@@ -1245,3 +1245,35 @@ body {
 .feature-card:hover .trend-icon-animated i {
     animation: pulse 1s infinite;
 }
+
+/* Add these dark mode styles */
+[data-theme="dark"] .blog-post {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .blog-content {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .author-bio {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .list-group-item {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .list-group-item:hover {
+    background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .text-dark {
+    color: var(--text-primary) !important;
+}
