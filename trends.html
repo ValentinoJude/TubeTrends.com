@@ -44,10 +44,35 @@
               <li class="nav-item">
                 <a class="nav-link active" href="about.html">About</a>
             </li>
+            <div class="nav-item ms-2 d-flex align-items-center">
+                <button id="themeToggle" class="btn btn-outline-light btn-sm">
+                    <i class="fas fa-sun" id="lightIcon"></i>
+                    <i class="fas fa-moon" id="darkIcon" style="display: none;"></i>
+                </button>
+            </div>
           </ul>
         </div>
       </div>
     </nav>
+
+    <div class="container py-4">
+      <!-- Trending Categories -->
+      <div class="row mb-4">
+          <div class="col-12">
+              <div class="card">
+                  <div class="card-body">
+                      <h3>Trending Categories</h3>
+                      <div class="trend-categories d-flex flex-wrap gap-2">
+                          <button class="btn btn-outline-danger active">Gaming</button>
+                          <button class="btn btn-outline-danger">Entertainment</button>
+                          <button class="btn btn-outline-danger">Education</button>
+                          <button class="btn btn-outline-danger">Sports</button>
+                          <!-- Add more categories -->
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
     <main class="container py-4">
       <!-- Trending Topics Section -->
@@ -336,5 +361,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="trends.js"></script>
+    <script src="theme.js"></script>
   </body>
 </html>

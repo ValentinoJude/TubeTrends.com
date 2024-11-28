@@ -523,37 +523,6 @@ footer {
     font-size: 0.8rem;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Get filter elements
-    const categorySelect = document.getElementById('content-category');
-    const growthPeriod = document.getElementById('growth-period');
-    const sortBy = document.getElementById('sort-by');
-    
-    // Add event listeners
-    categorySelect?.addEventListener('change', updateCreators);
-    growthPeriod?.addEventListener('change', updateCreators);
-    sortBy?.addEventListener('change', updateCreators);
-    
-    function updateCreators() {
-        // Get current filter values
-        const category = categorySelect.value;
-        const period = growthPeriod.value;
-        const sortMethod = sortBy.value;
-        
-        // Update URL parameters
-        const searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('category', category);
-        searchParams.set('period', period);
-        searchParams.set('sort', sortMethod);
-        
-        const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-        history.pushState({}, '', newUrl);
-        
-        // Here you would typically make an API call to get filtered/sorted data
-        console.log('Filters:', { category, period, sortMethod });
-    }
-});
-
 /* Collaboration Cards */
 .collab-card {
     transition: transform 0.2s;
@@ -977,4 +946,302 @@ blockquote {
 
 .list-group-item-action:hover {
     background-color: rgba(220, 53, 69, 0.05);
+}
+
+/* Leaderboard specific styles */
+.leaderboard-filters {
+    margin-bottom: 2rem;
+}
+
+.leaderboard-table img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.leaderboard-card {
+    transition: transform 0.2s;
+}
+
+.leaderboard-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Theme Variables */
+:root {
+    /* Light Theme (default) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --navbar-bg: #212529;
+    --navbar-text: #ffffff;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --bg-primary: #212529;
+    --bg-secondary: #343a40;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --border-color: #495057;
+    --card-bg: #343a40;
+    --navbar-bg: #111315;
+    --navbar-text: #ffffff;
+}
+
+/* Apply Theme Colors */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.card-body {
+    color: var(--text-primary);
+}
+
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Dark mode specific overrides */
+[data-theme="dark"] .btn-outline-danger {
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+[data-theme="dark"] .btn-outline-danger:hover {
+    background-color: #ff4d4d;
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .table {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-control {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* Theme Toggle Button */
+#themeToggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#themeToggle:hover {
+    transform: rotate(360deg);
+}
+
+/* Animation for theme transition */
+.theme-transition {
+    animation: themeTransition 0.3s ease;
+}
+
+@keyframes themeTransition {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Theme Toggle Button Styles */
+#themeToggle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+/* Light mode */
+#themeToggle.btn-outline-light {
+    color: #fff; /* Make icon white in light mode */
+}
+
+#themeToggle.btn-outline-light:hover {
+    color: #000; /* Make icon dark on hover in light mode */
+}
+
+/* Dark mode */
+[data-theme="dark"] #themeToggle.btn-outline-dark {
+    color: #fff; /* Make icon white in dark mode */
+    border-color: #fff; /* Make border white in dark mode */
+}
+
+[data-theme="dark"] #themeToggle.btn-outline-dark:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+/* Icon specific styles */
+#lightIcon, #darkIcon {
+    font-size: 1.2rem; /* Make icons slightly larger */
+}
+
+/* General Styles for Dark Mode */
+[data-theme="dark"] {
+    --bg-primary: #212529;
+    --bg-secondary: #343a40;
+    --text-primary: #f8f9fa;
+    --text-secondary: #adb5bd;
+    --border-color: #495057;
+    --card-bg: #343a40;
+    --navbar-bg: #111315;
+    --navbar-text: #ffffff;
+}
+
+/* Specific Styles for About Page */
+[data-theme="dark"] .logo-container img {
+    filter: brightness(0.9); /* Adjust logo brightness */
+}
+
+[data-theme="dark"] .card {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .feature-item {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .feature-icon i {
+    color: #ff4d4d; /* Ensure icons are visible */
+}
+
+[data-theme="dark"] .red-line {
+    background-color: #ff4d4d; /* Ensure red lines are visible */
+}
+
+[data-theme="dark"] .lead {
+    color: var(--text-secondary);
+}
+
+[data-theme="dark"] .text-danger {
+    color: #ff4d4d !important; /* Ensure text-danger is visible */
+}
+
+[data-theme="dark"] .btn-danger {
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+    color: var(--bg-primary);
+}
+
+[data-theme="dark"] .btn-danger:hover {
+    background-color: #e63946;
+    border-color: #e63946;
+}
+
+[data-theme="dark"] .form-control {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .form-control:focus {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    box-shadow: 0 0 0 0.25rem rgba(255, 77, 77, 0.25);
+}
+
+/* Trend Icon Animation */
+.trend-icon-animated {
+    position: relative;
+    display: inline-block;
+}
+
+.trend-icon-animated i {
+    animation: pulse 2s infinite;
+}
+
+.trend-dots {
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+}
+
+.dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #dc3545;
+    margin: 0 2px;
+    opacity: 0;
+    animation: dotFade 1.5s infinite;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes dotFade {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Dark mode support */
+[data-theme="dark"] .trend-dots .dot {
+    background-color: #ff4d4d;
+}
+
+/* Hover effect */
+.feature-card:hover .trend-icon-animated i {
+    animation: pulse 1s infinite;
 }

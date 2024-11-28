@@ -1,52 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Get filter elements
-    const categorySelect = document.getElementById('category-select');
-    const sortSelect = document.getElementById('sort-select');
-    const timeSelect = document.getElementById('time-select');
+    const categorySelect = document.getElementById('content-category');
+    const growthPeriod = document.getElementById('growth-period');
+    const sortBy = document.getElementById('sort-by');
     
-    // Add event listeners
-    categorySelect.addEventListener('change', updateLeaderboard);
-    sortSelect.addEventListener('change', updateLeaderboard);
-    timeSelect.addEventListener('change', updateLeaderboard);
+    // Add event listeners with null checks
+    if (categorySelect) {
+        categorySelect.addEventListener('change', updateCreators);
+    }
     
-    function updateLeaderboard() {
+    if (growthPeriod) {
+        growthPeriod.addEventListener('change', updateCreators);
+    }
+    
+    if (sortBy) {
+        sortBy.addEventListener('change', updateCreators);
+    }
+    
+    function updateCreators() {
         // Get current filter values
-        const category = categorySelect.value;
-        const sortBy = sortSelect.value;
-        const timeFrame = timeSelect.value;
+        const category = categorySelect?.value || 'all';
+        const period = growthPeriod?.value || '30days';
+        const sortMethod = sortBy?.value || 'subscribers';
         
-        // Here you would typically make an API call to get filtered/sorted data
-        // For now, we'll just log the filter values
-        console.log('Filters:', {
-            category,
-            sortBy,
-            timeFrame
-        });
-        
-        // Example of how to update the URL with filter parameters
+        // Update URL parameters
         const searchParams = new URLSearchParams(window.location.search);
         searchParams.set('category', category);
-        searchParams.set('sort', sortBy);
-        searchParams.set('time', timeFrame);
+        searchParams.set('period', period);
+        searchParams.set('sort', sortMethod);
         
         const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
         history.pushState({}, '', newUrl);
+        
+        // Here you would typically make an API call to get filtered/sorted data
+        console.log('Filters:', { category, period, sortMethod });
     }
-    
-    // Handle pagination clicks
-    document.querySelectorAll('.pagination .page-link').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const page = this.textContent;
-            
-            // Update active state
-            document.querySelectorAll('.page-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            this.parentElement.classList.add('active');
-            
-            // Here you would typically load the new page of results
-            console.log('Loading page:', page);
-        });
-    });
 }); 

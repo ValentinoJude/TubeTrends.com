@@ -46,6 +46,12 @@
           <li class="nav-item">
             <a class="nav-link" href="about.html">About</a>
           </li>
+          <div class="nav-item ms-2 d-flex align-items-center">
+            <button id="themeToggle" class="btn btn-outline-light btn-sm">
+              <i class="fas fa-sun" id="lightIcon"></i>
+              <i class="fas fa-moon" id="darkIcon" style="display: none;"></i>
+            </button>
+          </div>
           </ul>
         </div>
       </div>
@@ -162,7 +168,11 @@
           <div class="col-md-6 col-lg-3">
             <div class="card h-100 feature-card">
               <div class="card-body text-center">
-                <i class="fas fa-trending-up fa-3x text-danger mb-3"></i>
+                <div class="trend-icons-container mb-3">
+                  <i class="fas fa-chart-line fa-2x text-danger"></i>
+                  <i class="fas fa-fire fa-2x text-warning ms-2"></i>
+                  <i class="fas fa-arrow-trend-up fa-2x text-success ms-2"></i>
+                </div>
                 <h3 class="h5">Trends</h3>
                 <p class="card-text">Stay updated with the latest YouTube trends</p>
               </div>
@@ -200,5 +210,6 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="theme.js"></script>
   </body>
 </html>
