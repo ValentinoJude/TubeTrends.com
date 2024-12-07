@@ -67,19 +67,14 @@
                     <div class="col-md-3">
                         <select class="form-select" id="category-select">
                             <option value="all">All Categories</option>
-                            <option value="entertainment">Entertainment</option>
-                            <option value="gaming">Gaming</option>
-                            <option value="education">Education</option>
-                            <option value="music">Music</option>
-                            <option value="sports">Sports</option>
+                            <!-- Categories will be populated by JavaScript -->
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <select class="form-select" id="sort-select">
-                            <option value="subscribers">Sort by Subscribers</option>
-                            <option value="views">Sort by Views</option>
-                            <option value="growth">Sort by Growth Rate</option>
-                            <option value="engagement">Sort by Engagement</option>
+                        <select id="sort-select" class="form-select">
+                            <option value="subscriber">Sort by Subscribers</option>
+                            <option value="view">Sort by Views</option>
+                            <option value="video">Sort by Videos</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -100,90 +95,16 @@
             </div>
         </div>
 
-        <!-- Leaderboard List -->
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body p-0">
-                        <div class="list-group list-group-flush">
-                            <!-- MrBeast -->
-                            <div class="list-group-item p-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="position-relative">
-                                        <img src="Images/mrbeast.jpg" class="rounded-circle" width="80" height="80" alt="MrBeast">
-                                        <span class="position-absolute top-0 start-0 badge bg-danger">#1</span>
-                                    </div>
-                                    <div class="ms-3 flex-grow-1">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-0">
-                                                <a href="https://www.youtube.com/@MrBeast" class="text-decoration-none" target="_blank">MrBeast</a>
-                                            </h5>
-                                            <span class="badge bg-success">↑ 12%</span>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Subscribers</small>
-                                                <p class="mb-0">294M</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Videos</small>
-                                                <p class="mb-0">804</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Views</small>
-                                                <p class="mb-0">53.3B</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Joined</small>
-                                                <p class="mb-0">Feb 20, 2012</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="list-group-item p-3">
-                                <div class="d-flex align-items-center">
-                                    <div class="position-relative">
-                                        <img src="Images/Tseries.jpg" class="rounded-circle" width="80" height="80" alt="MrBeast">
-                                        <span class="position-absolute top-0 start-0 badge bg-danger">#2</span>
-                                    </div>
-                                    <div class="ms-3 flex-grow-1">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="mb-0">
-                                                <a href="https://www.youtube.com/@Tseries" class="text-decoration-none" target="_blank">Tseries</a>
-                                            </h5>
-                                            <span class="badge bg-success">↑ 6%</span>
-                                        </div>
-                                        <div class="row mt-2">
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Subscribers</small>
-                                                <p class="mb-0">268M</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Videos</small>
-                                                <p class="mb-0">21,345</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Views</small>
-                                                <p class="mb-0">43.4B</p>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <small class="text-muted">Joined</small>
-                                                <p class="mb-0">Feb 20, 2012</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Add more channels following the same pattern -->
-                            
-                        </div>
-                    </div>
+        <!-- Leaderboard Content -->
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush" id="leaderboard-list">
+                    <!-- Content will be populated by JavaScript -->
                 </div>
             </div>
         </div>
 
+        <!-- Pagination -->
         <nav aria-label="Leaderboard pagination" class="mt-4">
             <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
@@ -208,7 +129,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="leaderboard.js"></script>
+    <script type="module" src="leaderboard.js"></script>
     <script src="theme.js"></script>
 </body>
 </html>

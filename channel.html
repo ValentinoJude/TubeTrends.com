@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Channel Details - TubeTrends</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body data-bs-theme="light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                TubeTrends
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="leaderboard.html">Leaderboards</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="comparisontool.html">Compare</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="trends.html">Trends</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="upandcoming.html">Up-and-Coming</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="shop.html">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                </ul>
+                <div class="nav-item ms-2 d-flex align-items-center">
+                    <button id="themeToggle" class="btn btn-outline-light btn-sm">
+                        <i class="fas fa-sun" id="lightIcon"></i>
+                        <i class="fas fa-moon" id="darkIcon" style="display: none;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- Add this breadcrumb navigation at the top -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="leaderboard.html">Leaderboard</a></li>
+                <li class="breadcrumb-item active" id="channel-breadcrumb">Channel Details</li>
+            </ol>
+        </nav>
+
+        <!-- Add a back button -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <button onclick="window.history.back()" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Leaderboard
+            </button>
+            <a id="youtube-channel-link" href="#" target="_blank" class="btn btn-danger">
+                <i class="fab fa-youtube me-2"></i>Visit YouTube Channel
+            </a>
+        </div>
+
+        <!-- Channel Header -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-2">
+                        <img id="channel-thumbnail" class="rounded-circle img-fluid" alt="Channel Thumbnail">
+                    </div>
+                    <div class="col-md-10">
+                        <h1 id="channel-title" class="mb-2"></h1>
+                        <p id="channel-description" class="text-muted"></p>
+                        <div class="d-flex gap-4">
+                            <div>
+                                <h3 id="subscriber-count"></h3>
+                                <small class="text-muted">Subscribers</small>
+                            </div>
+                            <div>
+                                <h3 id="view-count"></h3>
+                                <small class="text-muted">Total Views</small>
+                            </div>
+                            <div>
+                                <h3 id="video-count"></h3>
+                                <small class="text-muted">Videos</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Latest Videos -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Latest Videos</h3>
+            </div>
+            <div class="card-body">
+                <div id="latest-videos" class="row"></div>
+            </div>
+        </div>
+
+        <!-- Analytics -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Estimated Revenue</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="revenue-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3>Growth Trends</h3>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="growth-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="channel.js" type="module"></script>
+</body>
+</html> 

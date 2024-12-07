@@ -1,309 +1,416 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Get filter elements
-    const categorySelect = document.getElementById('category-select');
-    const growthPeriod = document.getElementById('time-select');
-    const sortBy = document.getElementById('sort-select');
-    const searchInput = document.querySelector('input[type="text"]');
-    const searchButton = document.querySelector('.btn-danger');
-    
-    // Add event listeners with null checks
-    if (categorySelect) {
-        categorySelect.addEventListener('change', updateCreators);
-    }
-    
-    if (growthPeriod) {
-        growthPeriod.addEventListener('change', updateCreators);
-    }
-    
-    if (sortBy) {
-        sortBy.addEventListener('change', updateCreators);
-    }
-    
-    // Add search functionality
-    let searchTimeout;
-    searchInput.addEventListener('input', () => {
-        clearTimeout(searchTimeout);
-        searchTimeout = setTimeout(updateCreators, 300);
-    });
-    
-    searchButton.addEventListener('click', () => {
-        updateCreators();
-    });
-    
-    function updateCreators() {
-        // Get current filter values
-        const category = categorySelect?.value || 'all';
-        const period = growthPeriod?.value || '30days';
-        const sortMethod = sortBy?.value || 'subscribers';
-        
-        // Update URL parameters
-        const searchParams = new URLSearchParams(window.location.search);
-        searchParams.set('category', category);
-        searchParams.set('period', period);
-        searchParams.set('sort', sortMethod);
-        
-        const newUrl = `${window.location.pathname}?${searchParams.toString()}`;
-        history.pushState({}, '', newUrl);
-        
-        // Here you would typically make an API call to get filtered/sorted data
-        console.log('Filters:', { category, period, sortMethod });
-    }
-}); 
+import config from './config.js';
 
-function showLoading() {
-    const leaderboard = document.querySelector('.list-group');
-    leaderboard.innerHTML = `
-        <div class="list-group-item p-5 text-center">
-            <div class="spinner-border text-danger" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-        </div>
-    `;
-} 
+// List of popular YouTube channels to display
+const CHANNEL_IDS = [
+    'UCX6OQ3DkcsbYNE6H8uQQuVA', // MrBeast
+    'UCq-Fj5jknLsUf-MWSy4_brA', // T-Series
+    'UC-lHJZR3Gqxm24_Vd_AJ5Yw', // PewDiePie
+    'UCbCmjCuTUZos6Inko4u57UQ', // Cocomelon
+    'UCpEhnqL0y41EpW2TvWAHD7Q', // SET India
+    'UC295-Dw_tDNtZXFeAPAW6Aw', // 5-Minute Crafts
+    'UCffDXn7ycAzwL2LDlbyWOTw', // Zee Music Company
+    'UCtI0Hodo5o5dUb67FeUjDeA', // Movieclips
+    'UCYiGq8XF7YQD00x7wAd62Zg', // Zee TV
+    'UCvlE5gTbOvjiolFlEm-c_Ow', // WWE
+    'UCpko_-a4wgz2u_DgDgd9fqA', // BuzzFeed
+    'UCJ5v_MCY6GNUBTO8-D3XoAg', // WWE Music
+    'UCEdvpU2pFRCVqU6yIPyTpMQ', // Marshmello
+    'UComP_epzeKzvBX156r6pm1Q', // Like Nastya
+    'UCK8sQmJBp8GCxrOtXWBpyEA', // Google
+    'UCOmHUn--16B90oW2L6FRR3A', // BLACKPINK
+    'UC3IZKseVpdzPSBaWxBxundA', // HYBE LABELS
+    'UCRijo3ddMTht_IHyNSNXpNQ', // Dude Perfect
+    'UCF1JIbMUs6uqoZEY1Haw0GQ', // GR6
+    'UCaWd5_7JhbQBe4dknZhsHJg', // WowKidz
+    'UC_8PAD0Qmi6_gpe77S1Atgg', // Jess No Limit
+    'UCBVjMGOIkavEAhyqpxJ73Dw', // Maroon 5
+    'UCWOA1ZGywLbqmigxE4Qlvuw', // Netflix
+    'UCJ0uqCI0Vqr2Rrt1HseGirg', // SpaceX
+    'UCppHT7SZKKvar4Oc9J4oljQ', // Badabun
+    'UCstEtN0pgOmCf02EdXsGChw', // ABS-CBN Entertainment
+    'UCaHNFIob5Ixv74f5on3lvIw', // PowerKids TV
+    'UCRv76wLBC73jiP7LX4C3l8Q', // EminemMusic
+    'UCYLNGLIzMhRTi6ZOLjHO_wQ', // Speed Records
+    'UCcabW7890RKJzL968QWEykA', // CS GAMING
+    // ... continuing with more channels ...
+    'UCZSNzBgFub_WWil6TOTYwAg', // ESPN
+    'UCvC4D8onUfXzvjTOM-dBfEA', // Marvel Entertainment
+    'UCJ5v_MCY6GNUBTO8-D3XoAg', // Justin Bieber
+    'UCN1hnUccO4FD5WfM7ithXaw', // Marques Brownlee
+    'UC3XTzVzaHQEd30rQbuvCtTQ', // LastWeekTonight
+    'UCftwRNsjfRo08xYE31tkiyw', // WIRED
+    'UCaHNFIob5Ixv74f5on3lvIw', // PowerKids TV
+    'UCVTyTA7-g9nopHeHbeuvpRA', // Late Night with Seth Meyers
+    'UCi8e0iOVk1fEOogdfu4YgfA', // Movieclips Trailers
+    'UC4PooiX37Pld1T8J5SYT-SQ', // Good Mythical Morning
+    // Add more channels as needed...
+];
 
-// Add this button to your HTML first
-const exportButton = document.createElement('button');
-exportButton.className = 'btn btn-outline-danger ms-2';
-exportButton.innerHTML = '<i class="fas fa-download me-2"></i>Export Data';
-exportButton.onclick = exportLeaderboard;
-document.querySelector('.card-body .row').appendChild(exportButton);
+const CHANNELS_PER_PAGE = 10; // Number of channels to show per page
+let currentPage = 1;
+let allChannels = []; // Will store all fetched channels
 
-function exportLeaderboard() {
-    const data = getCurrentLeaderboardData();
-    const csv = convertToCSV(data);
-    downloadCSV(csv, 'youtube_leaderboard.csv');
-}
+const CHANNEL_CATEGORIES = {
+    // Entertainment & Vlogging
+    'UCX6OQ3DkcsbYNE6H8uQQuVA': 'entertainment',     // MrBeast
+    'UC-lHJZR3Gqxm24_Vd_AJ5Yw': 'entertainment',     // PewDiePie
+    'UCpko_-a4wgz2u_DgDgd9fqA': 'entertainment',     // BuzzFeed
+    'UCVTyTA7-g9nopHeHbeuvpRA': 'entertainment',     // Late Night with Seth Meyers
+    'UC4PooiX37Pld1T8J5SYT-SQ': 'entertainment',     // Good Mythical Morning
 
-function convertToCSV(data) {
-    const headers = ['Rank', 'Channel', 'Subscribers', 'Videos', 'Views', 'Joined'];
-    const rows = data.map(channel => [
-        channel.rank,
-        channel.name,
-        channel.subscribers,
-        channel.videos,
-        channel.views,
-        channel.joined
-    ]);
-    
-    return [headers, ...rows]
-        .map(row => row.join(','))
-        .join('\n');
-} 
+    // Music & Record Labels
+    'UCq-Fj5jknLsUf-MWSy4_brA': 'music',             // T-Series
+    'UCffDXn7ycAzwL2LDlbyWOTw': 'music',             // Zee Music Company
+    'UCJ5v_MCY6GNUBTO8-D3XoAg': 'music',             // WWE Music
+    'UCEdvpU2pFRCVqU6yIPyTpMQ': 'music',             // Marshmello
+    'UCOmHUn--16B90oW2L6FRR3A': 'music',             // BLACKPINK
+    'UC3IZKseVpdzPSBaWxBxundA': 'music',             // HYBE LABELS
+    'UCBVjMGOIkavEAhyqpxJ73Dw': 'music',             // Maroon 5
+    'UCRv76wLBC73jiP7LX4C3l8Q': 'music',             // EminemMusic
+    'UCYLNGLIzMhRTi6ZOLjHO_wQ': 'music',             // Speed Records
 
-async function fetchCreatorData(filters) {
-    showLoading();
+    // Kids & Education
+    'UCbCmjCuTUZos6Inko4u57UQ': 'kids',              // Cocomelon
+    'UComP_epzeKzvBX156r6pm1Q': 'kids',              // Like Nastya
+    'UCaWd5_7JhbQBe4dknZhsHJg': 'kids',              // WowKidz
+    'UCaHNFIob5Ixv74f5on3lvIw': 'kids',              // PowerKids TV
+
+    // Media & Movies
+    'UCtI0Hodo5o5dUb67FeUjDeA': 'movies',            // Movieclips
+    'UCYiGq8XF7YQD00x7wAd62Zg': 'media',             // Zee TV
+    'UCWOA1ZGywLbqmigxE4Qlvuw': 'movies',            // Netflix
+    'UCstEtN0pgOmCf02EdXsGChw': 'media',             // ABS-CBN Entertainment
+    'UCvC4D8onUfXzvjTOM-dBfEA': 'movies',            // Marvel Entertainment
+    'UCi8e0iOVk1fEOogdfu4YgfA': 'movies',            // Movieclips Trailers
+    'UCpEhnqL0y41EpW2TvWAHD7Q': 'media',             // SET India
+    'UCppHT7SZKKvar4Oc9J4oljQ': 'media',             // Badabun
+
+    // Sports & Gaming
+    'UCvlE5gTbOvjiolFlEm-c_Ow': 'sports',            // WWE
+    'UCRijo3ddMTht_IHyNSNXpNQ': 'sports',            // Dude Perfect
+    'UCZSNzBgFub_WWil6TOTYwAg': 'sports',            // ESPN
+    'UCF1JIbMUs6uqoZEY1Haw0GQ': 'gaming',            // GR6
+    'UC_8PAD0Qmi6_gpe77S1Atgg': 'gaming',            // Jess No Limit
+    'UCcabW7890RKJzL968QWEykA': 'gaming',            // CS GAMING
+
+    // Tech & Science
+    'UCK8sQmJBp8GCxrOtXWBpyEA': 'tech',              // Google
+    'UCJ0uqCI0Vqr2Rrt1HseGirg': 'tech',              // SpaceX
+    'UCN1hnUccO4FD5WfM7ithXaw': 'tech',              // Marques Brownlee
+    'UCftwRNsjfRo08xYE31tkiyw': 'tech',              // WIRED
+
+    // How-to & Educational
+    'UC295-Dw_tDNtZXFeAPAW6Aw': 'howto',             // 5-Minute Crafts
+
+    // News & Commentary
+    'UC3XTzVzaHQEd30rQbuvCtTQ': 'news'               // LastWeekTonight
+};
+
+// Updated main categories based on actual usage
+const MAIN_CATEGORIES = [
+    'entertainment',
+    'music',
+    'kids',
+    'movies',
+    'media',
+    'sports',
+    'gaming',
+    'tech',
+    'howto',
+    'news'
+];
+
+async function fetchChannelData() {
     try {
-        // In real implementation, this would be an API call
-        const response = await fetch(`/api/creators?${new URLSearchParams(filters)}`);
+        console.log('Fetching channel data...');
+        const response = await fetch(
+            `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${CHANNEL_IDS.join(',')}&key=${config.YOUTUBE_API_KEY}`
+        );
+
+        if (!response.ok) {
+            throw new Error('API request failed');
+        }
+
         const data = await response.json();
-        renderLeaderboard(data);
+        console.log('Received data:', data);
+        return data.items;
     } catch (error) {
-        showError('Failed to load creator data');
+        console.error('Error fetching data:', error);
+        return [];
     }
 }
 
-function renderLeaderboard(creators) {
-    const leaderboardList = document.querySelector('.list-group');
-    leaderboardList.innerHTML = creators.map((creator, index) => enhanceCreatorCard(creator)).join('');
-} 
+function formatNumber(num) {
+    if (num >= 1e9) return (num / 1e9).toFixed(1) + 'B';
+    if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
+    if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+    return num.toString();
+}
 
-function enhanceCreatorCard(creator) {
-    return `
+function sortChannels(channels, sortBy) {
+    console.log('Sorting by:', sortBy);
+    
+    const statisticsField = {
+        'subscriber': 'subscriberCount',
+        'view': 'viewCount',
+        'video': 'videoCount'
+    }[sortBy];
+
+    // Add specific logging for video counts
+    if (sortBy === 'video') {
+        console.log('First 5 channels before sorting:');
+        channels.slice(0, 5).forEach(channel => {
+            console.log(`${channel.snippet.title}: raw value = ${channel.statistics.videoCount}, parsed value = ${parseInt(channel.statistics.videoCount)}`);
+        });
+    }
+
+    const sortedChannels = [...channels].sort((a, b) => {
+        const valueA = parseInt(a.statistics[statisticsField]);
+        const valueB = parseInt(b.statistics[statisticsField]);
+        
+        // Add error checking for video sorting
+        if (isNaN(valueA) || isNaN(valueB)) {
+            console.error('Invalid values detected:', {
+                channelA: a.snippet.title,
+                valueA: a.statistics[statisticsField],
+                channelB: b.snippet.title,
+                valueB: b.statistics[statisticsField]
+            });
+        }
+        
+        return valueB - valueA;
+    });
+
+    // Verify the sort worked
+    if (sortBy === 'video') {
+        console.log('First 5 channels after sorting:');
+        sortedChannels.slice(0, 5).forEach(channel => {
+            console.log(`${channel.snippet.title}: ${channel.statistics.videoCount} videos`);
+        });
+    }
+
+    return sortedChannels;
+}
+
+// Add this function to filter channels by category
+function filterChannelsByCategory(channels, category) {
+    if (category === 'all') return channels;
+    
+    console.log('Filtering by category:', category);
+    const filteredChannels = channels.filter(channel => {
+        const channelCategory = CHANNEL_CATEGORIES[channel.id];
+        const channelTitle = channel.snippet.title;
+        
+        // Log any channels that don't have a category mapping
+        if (!channelCategory) {
+            console.warn(`Warning: No category mapping for channel: ${channelTitle} (ID: ${channel.id})`);
+        }
+        
+        // Log category matches for sports
+        if (category === 'sports') {
+            console.log(`Sports check - Channel: ${channelTitle}, Category: ${channelCategory}, Match: ${channelCategory === category}`);
+        }
+        
+        return channelCategory === category;
+    });
+    
+    console.log(`Found ${filteredChannels.length} channels in category '${category}':`);
+    console.log(filteredChannels.map(c => c.snippet.title));
+    
+    return filteredChannels;
+}
+
+// Modify the updateLeaderboard function to handle categories
+function updateLeaderboard(channels, page = 1, sortBy = 'subscriber', category = 'all') {
+    const leaderboard = document.getElementById('leaderboard-list');
+    const pagination = document.querySelector('.pagination');
+    
+    if (!leaderboard) {
+        console.error('Leaderboard element not found');
+        return;
+    }
+
+    // First filter by category
+    const filteredChannels = filterChannelsByCategory(channels, category);
+    
+    // Then sort the filtered channels
+    const sortedChannels = sortChannels(filteredChannels, sortBy);
+    allChannels = channels; // Keep the original unfiltered channels in global state
+
+    // Calculate pagination based on filtered results
+    const totalPages = Math.ceil(sortedChannels.length / CHANNELS_PER_PAGE);
+    const startIndex = (page - 1) * CHANNELS_PER_PAGE;
+    const endIndex = startIndex + CHANNELS_PER_PAGE;
+    const channelsToShow = sortedChannels.slice(startIndex, endIndex);
+
+    // Update channel list
+    const leaderboardHTML = channelsToShow.map((channel, index) => `
         <div class="list-group-item p-3">
             <div class="d-flex align-items-center">
-                <div class="position-relative">
-                    <img src="${creator.image}" class="rounded-circle" width="80" height="80" alt="${creator.name}">
-                    <span class="position-absolute top-0 start-0 badge bg-danger">#${creator.rank}</span>
-                </div>
-                <div class="ms-3 flex-grow-1">
-                    <!-- Existing creator info -->
-                    <div class="mt-3">
-                        ${creator.hasStore ? `
-                            <div class="merchandise-preview">
-                                <h6 class="mb-2">Featured Merchandise</h6>
-                                <div class="d-flex gap-2">
-                                    ${creator.featuredProducts.map(product => `
-                                        <div class="merch-item">
-                                            <img src="${product.image}" class="rounded" width="50" height="50" alt="${product.name}">
-                                            <small class="d-block text-muted">$${product.price}</small>
-                                        </div>
-                                    `).join('')}
-                                    <a href="shop.html?creator=${creator.id}" class="btn btn-sm btn-outline-danger">
-                                        View All Products
-                                    </a>
-                                </div>
-                            </div>
-                        ` : ''}
-                        <div class="creator-actions mt-2">
-                            <button class="btn btn-sm btn-outline-danger favorite-btn" data-creator-id="${creator.id}">
-                                <i class="fas fa-heart"></i> Follow
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger compare-btn" data-creator-id="${creator.id}">
-                                <i class="fas fa-chart-line"></i> Compare
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger analytics-btn" data-creator-id="${creator.id}">
-                                <i class="fas fa-chart-bar"></i> Analytics
-                            </button>
+                <span class="me-3 h5 mb-0">#${startIndex + index + 1}</span>
+                <a href="channel.html?id=${channel.id}" class="channel-link d-flex align-items-center text-decoration-none flex-grow-1">
+                    <img src="${channel.snippet.thumbnails.default.url}" 
+                         class="rounded-circle me-3" 
+                         width="50" 
+                         height="50" 
+                         alt="${channel.snippet.title}">
+                    <div class="flex-grow-1">
+                        <h6 class="mb-0 text-dark">${channel.snippet.title}</h6>
+                        <div class="d-flex mt-2">
+                            <span class="me-4">
+                                <i class="fas fa-users me-2"></i>
+                                ${formatNumber(parseInt(channel.statistics.subscriberCount))}
+                            </span>
+                            <span class="me-4">
+                                <i class="fas fa-eye me-2"></i>
+                                ${formatNumber(parseInt(channel.statistics.viewCount))}
+                            </span>
+                            <span>
+                                <i class="fas fa-video me-2"></i>
+                                ${formatNumber(parseInt(channel.statistics.videoCount))}
+                            </span>
                         </div>
                     </div>
-                </div>
+                    <i class="fas fa-chevron-right ms-3 text-muted"></i>
+                </a>
             </div>
         </div>
-    `;
-} 
+    `).join('');
 
-function addAnalyticsPreview() {
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
-    const tooltipList = [...tooltipTriggerList].map(el => new bootstrap.Tooltip(el));
-
-    document.querySelectorAll('.creator-stats').forEach(stat => {
-        const ctx = stat.getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['7d', '6d', '5d', '4d', '3d', '2d', '1d'],
-                datasets: [{
-                    data: JSON.parse(stat.dataset.growth),
-                    borderColor: '#dc3545',
-                    tension: 0.4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
-        });
-    });
-} 
-
-class LeaderboardInteractions {
-    constructor() {
-        this.favorites = new Set(JSON.parse(localStorage.getItem('favoriteCreators') || '[]'));
-        this.setupEventListeners();
-    }
-
-    setupEventListeners() {
-        document.addEventListener('click', e => {
-            if (e.target.matches('.favorite-btn')) {
-                this.toggleFavorite(e.target.dataset.creatorId);
-            }
-            if (e.target.matches('.compare-btn')) {
-                this.addToComparison(e.target.dataset.creatorId);
-            }
-        });
-    }
-
-    toggleFavorite(creatorId) {
-        if (this.favorites.has(creatorId)) {
-            this.favorites.delete(creatorId);
-        } else {
-            this.favorites.add(creatorId);
-        }
-        localStorage.setItem('favoriteCreators', JSON.stringify([...this.favorites]));
-        this.updateFavoriteButton(creatorId);
-    }
-
-    addToComparison(creatorId) {
-        // Integrate with comparison tool
-        window.location.href = `comparisontool.html?creators=${creatorId}`;
-    }
-} 
-
-// Add Chart.js to your HTML
-// <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-function addVisualizationDashboard() {
-    const dashboardHTML = `
-        <div class="row mb-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Subscriber Distribution by Category</h5>
-                        <canvas id="categoryChart"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Growth Trends</h5>
-                        <canvas id="growthChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    document.querySelector('.container').insertAdjacentHTML('afterbegin', dashboardHTML);
-    renderCharts();
+    leaderboard.innerHTML = leaderboardHTML;
+    updatePagination(totalPages, page);
 }
 
-function renderCharts() {
-    // Category Distribution Chart
-    const ctxCategory = document.getElementById('categoryChart').getContext('2d');
-    new Chart(ctxCategory, {
-        type: 'doughnut',
-        data: {
-            labels: ['Entertainment', 'Gaming', 'Education', 'Music', 'Sports'],
-            datasets: [{
-                data: [30, 25, 15, 20, 10],
-                backgroundColor: [
-                    '#dc3545', '#fd7e14', '#20c997', '#0dcaf0', '#6610f2'
-                ]
-            }]
-        }
-    });
+// Add this new function to handle pagination UI
+function updatePagination(totalPages, currentPage) {
+    const pagination = document.querySelector('.pagination');
+    if (!pagination) return;
 
-    // Growth Trends Chart
-    const ctxGrowth = document.getElementById('growthChart').getContext('2d');
-    new Chart(ctxGrowth, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-            datasets: [{
-                label: 'Average Growth Rate',
-                data: [10, 15, 13, 18, 20, 17],
-                borderColor: '#dc3545'
-            }]
-        }
-    });
-} 
-
-function showCategoryInsights(category) {
-    const insightsHTML = `
-        <div class="category-insights card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">${category} Category Insights</h5>
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <h6>Average Subscribers</h6>
-                            <p class="h4">12.5M</p>
-                            <small class="text-success">↑ 8% this month</small>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <h6>Upload Frequency</h6>
-                            <p class="h4">3.2/week</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <h6>Avg. View Duration</h6>
-                            <p class="h4">8:45</p>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="stat-card">
-                            <h6>Engagement Rate</h6>
-                            <p class="h4">5.8%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    let paginationHTML = `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage - 1}">Previous</a>
+        </li>
     `;
+
+    // Add first page
+    paginationHTML += `
+        <li class="page-item ${currentPage === 1 ? 'active' : ''}">
+            <a class="page-link" href="#" data-page="1">1</a>
+        </li>
+    `;
+
+    // Add ellipsis and middle pages
+    if (totalPages > 7) {
+        if (currentPage > 3) {
+            paginationHTML += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+
+        for (let i = Math.max(2, currentPage - 1); i <= Math.min(currentPage + 1, totalPages - 1); i++) {
+            paginationHTML += `
+                <li class="page-item ${currentPage === i ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
+                </li>
+            `;
+        }
+
+        if (currentPage < totalPages - 2) {
+            paginationHTML += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+    } else {
+        // If few pages, show all
+        for (let i = 2; i < totalPages; i++) {
+            paginationHTML += `
+                <li class="page-item ${currentPage === i ? 'active' : ''}">
+                    <a class="page-link" href="#" data-page="${i}">${i}</a>
+                </li>
+            `;
+        }
+    }
+
+    // Add last page if more than one page
+    if (totalPages > 1) {
+        paginationHTML += `
+            <li class="page-item ${currentPage === totalPages ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${totalPages}">${totalPages}</a>
+            </li>
+        `;
+    }
+
+    paginationHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage + 1}">Next</a>
+        </li>
+    `;
+
+    pagination.innerHTML = paginationHTML;
+}
+
+// Add event listeners for pagination
+function initializePagination() {
+    const pagination = document.querySelector('.pagination');
+    if (!pagination) return;
+
+    pagination.addEventListener('click', (e) => {
+        e.preventDefault();
+        const pageLink = e.target.closest('.page-link');
+        if (!pageLink) return;
+
+        const newPage = parseInt(pageLink.dataset.page);
+        if (newPage && newPage !== currentPage) {
+            currentPage = newPage;
+            updateLeaderboard(allChannels, currentPage);
+            // Scroll to top of leaderboard
+            document.getElementById('leaderboard-list').scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+}
+
+// Add this near the top of the file with other event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    const sortSelect = document.getElementById('sort-select');
+    sortSelect.addEventListener('change', function() {
+        const sortValue = this.value;
+        // Convert the select values to match your existing sort function
+        const sortMapping = {
+            'subscriber': 'subscriber',
+            'view': 'view',
+            'video': 'video'
+        };
+        updateLeaderboard(allChannels, currentPage, sortMapping[sortValue]);
+    });
+});
+
+// Update the initialization code
+document.addEventListener('DOMContentLoaded', async () => {
+    console.log('Page loaded, fetching data...');
+    const channels = await fetchChannelData();
+    if (channels.length > 0) {
+        updateLeaderboard(channels, 1);
+        initializePagination();
+    } else {
+        console.error('No channel data received');
+    }
+});
+
+// Add event listener for category select
+document.addEventListener('DOMContentLoaded', () => {
+    const categorySelect = document.getElementById('category-select');
+    const sortSelect = document.getElementById('sort-select');
     
-    document.querySelector('.container').insertAdjacentHTML('afterbegin', insightsHTML);
-} 
+    // Populate category select
+    categorySelect.innerHTML = '<option value="all">All Categories</option>';
+    MAIN_CATEGORIES.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category.charAt(0).toUpperCase() + category.slice(1);
+        categorySelect.appendChild(option);
+    });
+
+    // Category change handler
+    categorySelect.addEventListener('change', function() {
+        const categoryValue = this.value;
+        const sortValue = sortSelect.value;
+        currentPage = 1; // Reset to first page when changing category
+        updateLeaderboard(allChannels, currentPage, sortValue, categoryValue);
+    });
+}); 
