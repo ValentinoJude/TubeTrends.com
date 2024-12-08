@@ -81,83 +81,72 @@
                             <label for="channel2">Second Channel</label>
                         </div>
                     </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-danger w-100 h-100">Compare</button>
+                    <div class="col-12">
+                        <button class="btn btn-danger w-100">Compare</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Comparison Results -->
-        <div class="row">
-            <!-- Channel 1 Stats -->
+        <!-- Comparison Results (Initially Hidden) -->
+        <div class="row comparison-results d-none">
+            <!-- Channel Cards -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0">MrBeast</h5>
+                        <h5 class="card-title mb-0"></h5>
                     </div>
                     <div class="card-body">
                         <div class="stats-grid">
                             <div class="stat-item">
-                                <h6>Subscribers</h6>
-                                <p class="h3 mb-0">294M</p>
-                                <small class="text-success">+12% this month</small>
+                                <h6>Channel Rank</h6>
+                                <div class="h3 mb-0"></div>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
-                                <h6>Total Views</h6>
-                                <p class="h3 mb-0">53.3B</p>
-                                <small class="text-success">+8% this month</small>
+                                <h6>Monthly Views</h6>
+                                <div class="h3 mb-0"></div>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
-                                <h6>Engagement Rate</h6>
-                                <p class="h3 mb-0">15.2%</p>
-                                <small class="text-danger">-2% this month</small>
+                                <h6>Upload Frequency</h6>
+                                <div class="h3 mb-0"></div>
+                                <small class="text-success"></small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Channel 2 Stats -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-success text-white">
-                        <h5 class="card-title mb-0">PewDiePie</h5>
+                        <h5 class="card-title mb-0"></h5>
                     </div>
                     <div class="card-body">
                         <div class="stats-grid">
                             <div class="stat-item">
-                                <h6>Subscribers</h6>
-                                <p class="h3 mb-0">111M</p>
-                                <small class="text-success">+5% this month</small>
+                                <h6>Channel Rank</h6>
+                                <div class="h3 mb-0"></div>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
-                                <h6>Total Views</h6>
-                                <p class="h3 mb-0">28.1B</p>
-                                <small class="text-success">+6% this month</small>
+                                <h6>Monthly Views</h6>
+                                <div class="h3 mb-0"></div>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
-                                <h6>Engagement Rate</h6>
-                                <p class="h3 mb-0">12.8%</p>
-                                <small class="text-success">+1% this month</small>
+                                <h6>Upload Frequency</h6>
+                                <div class="h3 mb-0"></div>
+                                <small class="text-success"></small>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Growth Chart -->
+            <!-- Engagement Metrics Table -->
             <div class="col-12 mb-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Subscriber Growth Comparison</h5>
-                        <canvas id="growthChart"></canvas>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Engagement Metrics -->
-            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Engagement Metrics</h5>
@@ -166,48 +155,25 @@
                                 <thead>
                                     <tr>
                                         <th>Metric</th>
-                                        <th>MrBeast</th>
-                                        <th>PewDiePie</th>
+                                        <th>Channel 1</th>
+                                        <th>Channel 2</th>
                                         <th>Difference</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Avg. Views per Video</td>
-                                        <td>45.2M</td>
-                                        <td>2.8M</td>
-                                        <td class="text-success">+42.4M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Avg. Likes per Video</td>
-                                        <td>2.1M</td>
-                                        <td>198K</td>
-                                        <td class="text-success">+1.9M</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Comment Rate</td>
-                                        <td>2.3%</td>
-                                        <td>1.8%</td>
-                                        <td class="text-success">+0.5%</td>
-                                    </tr>
-                                </tbody>
+                                <tbody></tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Add this after the comparison results -->
-        <div class="row mt-4">
+            <!-- Growth Chart -->
             <div class="col-12">
-                <div class="d-flex justify-content-end gap-2">
-                    <button class="btn btn-outline-danger" onclick="exportComparison()">
-                        <i class="fas fa-download me-2"></i>Export Data
-                    </button>
-                    <button class="btn btn-outline-danger" onclick="shareComparison()">
-                        <i class="fas fa-share-alt me-2"></i>Share
-                    </button>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Subscriber Growth Comparison</h5>
+                        <canvas id="growthChart"></canvas>
+                    </div>
                 </div>
             </div>
         </div>
@@ -258,6 +224,8 @@
             }
         });
     </script>
+    <script src="api.js"></script>
+    <script src="comparison.js"></script>
     <script src="theme.js"></script>
 </body>
 </html>
