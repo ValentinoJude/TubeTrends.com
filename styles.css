@@ -1352,3 +1352,26 @@ body {
     padding: 1rem;
     border-radius: 0.25rem;
 }
+
+/* VS Circle Styles */
+.vs-circle {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #dc3545, #b02a37);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border: 2px solid white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark mode support for VS Circle */
+[data-theme="dark"] .vs-circle {
+    border-color: var(--bg-secondary);
+    background: linear-gradient(135deg, #ff4d4d, #e63946);
+}

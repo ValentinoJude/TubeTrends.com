@@ -89,29 +89,29 @@
         </div>
 
         <!-- Comparison Results -->
-        <div class="row">
+        <div class="row" id="comparison-results" style="display: none;">
             <!-- Channel 1 Stats -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-primary text-white">
-                        <h5 class="card-title mb-0">MrBeast</h5>
+                        <h5 class="card-title mb-0"></h5>
                     </div>
                     <div class="card-body">
                         <div class="stats-grid">
                             <div class="stat-item">
                                 <h6>Subscribers</h6>
-                                <p class="h3 mb-0">294M</p>
-                                <small class="text-success">+12% this month</small>
+                                <p class="h3 mb-0"></p>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
                                 <h6>Total Views</h6>
-                                <p class="h3 mb-0">53.3B</p>
-                                <small class="text-success">+8% this month</small>
+                                <p class="h3 mb-0"></p>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
                                 <h6>Engagement Rate</h6>
-                                <p class="h3 mb-0">15.2%</p>
-                                <small class="text-danger">-2% this month</small>
+                                <p class="h3 mb-0"></p>
+                                <small class="text-success"></small>
                             </div>
                         </div>
                     </div>
@@ -122,24 +122,24 @@
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="card-header bg-success text-white">
-                        <h5 class="card-title mb-0">PewDiePie</h5>
+                        <h5 class="card-title mb-0"></h5>
                     </div>
                     <div class="card-body">
                         <div class="stats-grid">
                             <div class="stat-item">
                                 <h6>Subscribers</h6>
-                                <p class="h3 mb-0">111M</p>
-                                <small class="text-success">+5% this month</small>
+                                <p class="h3 mb-0"></p>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
                                 <h6>Total Views</h6>
-                                <p class="h3 mb-0">28.1B</p>
-                                <small class="text-success">+6% this month</small>
+                                <p class="h3 mb-0"></p>
+                                <small class="text-success"></small>
                             </div>
                             <div class="stat-item">
                                 <h6>Engagement Rate</h6>
-                                <p class="h3 mb-0">12.8%</p>
-                                <small class="text-success">+1% this month</small>
+                                <p class="h3 mb-0"></p>
+                                <small class="text-success"></small>
                             </div>
                         </div>
                     </div>
@@ -166,29 +166,29 @@
                                 <thead>
                                     <tr>
                                         <th>Metric</th>
-                                        <th>MrBeast</th>
-                                        <th>PewDiePie</th>
+                                        <th class="channel1-name"></th>
+                                        <th class="channel2-name"></th>
                                         <th>Difference</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>Avg. Views per Video</td>
-                                        <td>45.2M</td>
-                                        <td>2.8M</td>
-                                        <td class="text-success">+42.4M</td>
+                                        <td class="channel1-avg-views"></td>
+                                        <td class="channel2-avg-views"></td>
+                                        <td class="views-difference"></td>
                                     </tr>
                                     <tr>
                                         <td>Avg. Likes per Video</td>
-                                        <td>2.1M</td>
-                                        <td>198K</td>
-                                        <td class="text-success">+1.9M</td>
+                                        <td class="channel1-avg-likes"></td>
+                                        <td class="channel2-avg-likes"></td>
+                                        <td class="likes-difference"></td>
                                     </tr>
                                     <tr>
                                         <td>Comment Rate</td>
-                                        <td>2.3%</td>
-                                        <td>1.8%</td>
-                                        <td class="text-success">+0.5%</td>
+                                        <td class="channel1-comment-rate"></td>
+                                        <td class="channel2-comment-rate"></td>
+                                        <td class="comment-difference"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -196,16 +196,14 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Add this after the comparison results -->
-        <div class="row mt-4">
-            <div class="col-12">
+            <!-- Export/Share buttons -->
+            <div class="col-12 mt-4">
                 <div class="d-flex justify-content-end gap-2">
-                    <button class="btn btn-outline-danger" onclick="exportComparison()">
+                    <button class="btn btn-outline-danger" id="exportBtn">
                         <i class="fas fa-download me-2"></i>Export Data
                     </button>
-                    <button class="btn btn-outline-danger" onclick="shareComparison()">
+                    <button class="btn btn-outline-danger" id="shareBtn">
                         <i class="fas fa-share-alt me-2"></i>Share
                     </button>
                 </div>
