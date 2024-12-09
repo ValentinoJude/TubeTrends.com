@@ -56,26 +56,29 @@ function formatNumber(num) {
 async function fetchLatestVideos(channelId) {
     try {
         const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=6&type=video&key=${config.YOUTUBE_API_KEY}`
+            `https://www.googleapis.com/youtube/v3/search?part=snippet&channelId=${channelId}&order=date&maxResults=2&type=video&key=${config.YOUTUBE_API_KEYS[config.currentKeyIndex]}`
         );
         const data = await response.json();
         const videosContainer = document.getElementById('latest-videos');
         
         const videosHTML = data.items.map(video => `
-            <div class="col-md-4 mb-4">
+            <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <img src="${video.snippet.thumbnails.medium.url}" 
                          class="card-img-top" 
-                         alt="${video.snippet.title}">
+                         alt="${video.snippet.title}"
+                         style="object-fit: cover; height: 200px;">
                     <div class="card-body">
-                        <h5 class="card-title text-truncate">${video.snippet.title}</h5>
+                        <h5 class="card-title" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                            ${video.snippet.title}
+                        </h5>
                         <p class="card-text small text-muted">
-                            ${new Date(video.snippet.publishedAt).toLocaleDateString()}
+                            Published: ${new Date(video.snippet.publishedAt).toLocaleDateString()}
                         </p>
                         <a href="https://www.youtube.com/watch?v=${video.id.videoId}" 
-                           class="btn btn-danger btn-sm" 
+                           class="btn btn-danger" 
                            target="_blank">
-                            Watch Video
+                            <i class="fab fa-youtube me-2"></i>Watch Video
                         </a>
                     </div>
                 </div>
@@ -85,6 +88,14 @@ async function fetchLatestVideos(channelId) {
         videosContainer.innerHTML = videosHTML;
     } catch (error) {
         console.error('Error fetching latest videos:', error);
+        document.getElementById('latest-videos').innerHTML = `
+            <div class="col-12">
+                <div class="alert alert-warning" role="alert">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    Unable to load latest videos. Please try again later.
+                </div>
+            </div>
+        `;
     }
 }
 
@@ -195,67 +206,113 @@ function updateActiveNavLink() {
 
 // Main initialization
 document.addEventListener('DOMContentLoaded', async () => {
-    initializeThemeToggle();
-    updateActiveNavLink();
-    
-    // Add breadcrumb navigation
-    const channelTitle = document.querySelector('#channel-title').textContent;
-    document.querySelector('.container').insertAdjacentHTML('afterbegin', `
-        <nav aria-label="breadcrumb" class="mt-3">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="leaderboard.html">Leaderboard</a></li>
-                <li class="breadcrumb-item active" aria-current="page">${channelTitle || 'Channel Details'}</li>
-            </ol>
-        </nav>
-    `);
-    
-    const urlParams = new URLSearchParams(window.location.search);
-    const channelId = urlParams.get('id');
-    
-    if (channelId) {
-        // Show loading state
-        document.getElementById('channel-title').textContent = 'Loading...';
+    try {
+        console.log('Page loaded, getting channel ID...');
+        const urlParams = new URLSearchParams(window.location.search);
+        const channelId = urlParams.get('id');
         
-        await fetchChannelDetails(channelId);
-    } else {
-        console.error('No channel ID provided');
-        // Optionally redirect back to leaderboard
-        // window.location.href = 'leaderboard.html';
+        if (!channelId) {
+            console.error('No channel ID provided');
+            return;
+        }
+
+        console.log('Fetching details for channel:', channelId);
+        const channelData = await fetchChannelDetails(channelId);
+        
+        if (channelData) {
+            console.log('Updating UI with channel data:', channelData);
+            
+            // Update basic info
+            document.getElementById('channel-title').textContent = channelData.snippet.title;
+            document.getElementById('channel-description').textContent = channelData.snippet.description;
+            
+            // Update breadcrumb and channel link
+            document.getElementById('channel-breadcrumb').textContent = channelData.snippet.title;
+            document.getElementById('youtube-channel-link').href = `https://www.youtube.com/channel/${channelId}`;
+            
+            // Update thumbnail
+            const thumbnail = document.getElementById('channel-thumbnail');
+            thumbnail.src = channelData.snippet.thumbnails.default.url;
+            thumbnail.alt = channelData.snippet.title;
+            
+            // Update statistics with formatting
+            document.getElementById('subscriber-count').textContent = 
+                formatNumber(parseInt(channelData.statistics.subscriberCount));
+            document.getElementById('view-count').textContent = 
+                formatNumber(parseInt(channelData.statistics.viewCount));
+            document.getElementById('video-count').textContent = 
+                formatNumber(parseInt(channelData.statistics.videoCount));
+
+            // Initialize charts
+            initializeCharts(channelData);
+            
+            // Fetch latest videos
+            await fetchLatestVideos(channelId);
+
+            console.log('UI update complete');
+        }
+    } catch (error) {
+        console.error('Error updating UI:', error);
+        // Show error state
+        document.getElementById('channel-title').textContent = 'Error loading channel';
+        document.getElementById('channel-description').textContent = 'Failed to load channel details. Please try again later.';
     }
 });
 
 async function fetchChannelDetails(channelId) {
     try {
-        // Fetch basic channel info
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,brandingSettings&id=${channelId}&key=${config.YOUTUBE_API_KEY}`
-        );
-        const data = await response.json();
-        const channel = data.items[0];
+        let attempts = 0;
+        const maxAttempts = config.YOUTUBE_API_KEYS.length;
 
-        // Update breadcrumb with channel name
-        document.getElementById('channel-breadcrumb').textContent = channel.snippet.title;
+        while (attempts < maxAttempts) {
+            try {
+                console.log(`Attempting to fetch channel details with key ${attempts + 1}...`);
+                console.log('Current API Key:', config.YOUTUBE_API_KEYS[config.currentKeyIndex]);
+                
+                const url = `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics,brandingSettings&id=${channelId}&key=${config.YOUTUBE_API_KEYS[config.currentKeyIndex]}`;
+                console.log('Request URL:', url);
 
-        // Update YouTube channel link
-        document.getElementById('youtube-channel-link').href = `https://www.youtube.com/channel/${channelId}`;
+                const response = await fetch(url);
+                const data = await response.json();
 
-        // Update UI with channel details
-        document.getElementById('channel-thumbnail').src = channel.snippet.thumbnails.medium.url;
-        document.getElementById('channel-title').textContent = channel.snippet.title;
-        document.getElementById('channel-description').textContent = channel.snippet.description;
-        document.getElementById('subscriber-count').textContent = formatNumber(parseInt(channel.statistics.subscriberCount));
-        document.getElementById('view-count').textContent = formatNumber(parseInt(channel.statistics.viewCount));
-        document.getElementById('video-count').textContent = formatNumber(parseInt(channel.statistics.videoCount));
+                // Log the actual response
+                console.log('API Response:', data);
 
-        // Fetch latest videos
-        await fetchLatestVideos(channelId);
+                if (response.status === 403) {
+                    console.log(`API Key ${config.currentKeyIndex + 1} quota exceeded, trying next key...`);
+                    config.currentKeyIndex = (config.currentKeyIndex + 1) % config.YOUTUBE_API_KEYS.length;
+                    attempts++;
+                    continue;
+                }
 
-        // Initialize charts
-        initializeCharts();
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}: ${data.error?.message || 'Unknown error'}`);
+                }
 
+                if (!data.items || data.items.length === 0) {
+                    throw new Error('Channel not found');
+                }
+
+                // If we get here, we have valid data
+                console.log('Successfully fetched channel details:', data.items[0]);
+                return data.items[0];
+
+            } catch (error) {
+                console.error(`Attempt ${attempts + 1} failed:`, error);
+                attempts++;
+                if (attempts === maxAttempts) {
+                    console.error('All API keys have been tried and failed');
+                    throw error;
+                }
+                config.currentKeyIndex = (config.currentKeyIndex + 1) % config.YOUTUBE_API_KEYS.length;
+            }
+        }
     } catch (error) {
-        console.error('Error fetching channel details:', error);
+        console.error('Error in fetchChannelDetails:', error);
+        // Add user-friendly error display
         document.getElementById('channel-title').textContent = 'Error loading channel';
+        document.getElementById('channel-description').textContent = 'Failed to load channel details. Please try again later.';
+        throw error;
     }
 }
 

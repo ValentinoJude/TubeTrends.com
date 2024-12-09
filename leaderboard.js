@@ -123,17 +123,38 @@ const MAIN_CATEGORIES = [
 async function fetchChannelData() {
     try {
         console.log('Fetching channel data...');
-        const response = await fetch(
-            `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${CHANNEL_IDS.join(',')}&key=${config.YOUTUBE_API_KEY}`
-        );
+        let attempts = 0;
+        const maxAttempts = config.YOUTUBE_API_KEYS.length;
 
-        if (!response.ok) {
-            throw new Error('API request failed');
+        while (attempts < maxAttempts) {
+            try {
+                const response = await fetch(
+                    `https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=${CHANNEL_IDS.join(',')}&key=${config.YOUTUBE_API_KEYS[config.currentKeyIndex]}`
+                );
+
+                if (response.status === 403) {
+                    console.log(`API Key ${config.currentKeyIndex + 1} quota exceeded, trying next key...`);
+                    config.currentKeyIndex = (config.currentKeyIndex + 1) % config.YOUTUBE_API_KEYS.length;
+                    attempts++;
+                    continue;
+                }
+
+                if (!response.ok) {
+                    throw new Error('API request failed');
+                }
+
+                const data = await response.json();
+                console.log('Received data:', data);
+                return data.items;
+            } catch (error) {
+                attempts++;
+                if (attempts === maxAttempts) {
+                    console.error('All API keys have exceeded their quota');
+                    throw new Error('All API keys quota exceeded');
+                }
+                config.currentKeyIndex = (config.currentKeyIndex + 1) % config.YOUTUBE_API_KEYS.length;
+            }
         }
-
-        const data = await response.json();
-        console.log('Received data:', data);
-        return data.items;
     } catch (error) {
         console.error('Error fetching data:', error);
         return [];
